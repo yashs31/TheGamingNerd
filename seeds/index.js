@@ -15,11 +15,12 @@ db.once("open", ()=> {
 
 const seedDB=async()=>{
     await GameCard.deleteMany({});
-    for(let i=0;i<3;i++){
-        const random=Math.floor(Math.random()*3);
+    for(let i=0;i<4;i++){
+        //const random=Math.floor(Math.random()*3);
         const card=new GameCard({
-            title: `${games[random].title}`,
-            price: `${games[random].price}`
+            image: `${games[i].image}`,
+            title: `${games[i].title}`,
+            price: `${games[i].price}`
         })
         await card.save();
     }
