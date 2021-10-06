@@ -41,4 +41,6 @@ app.listen(3000,()=>{
     console.log("Servig on port 3000");
 });
 
+app.use(express.static(__dirname + "/public"));
+
 //run mongodb server with command "mongod" from bin folder
