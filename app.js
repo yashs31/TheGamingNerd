@@ -3,7 +3,7 @@ const path=require('path');
 const mongoose=require('mongoose');
 const GameCard=require('./models/gamecard');
 
-const steamDB="https://store.steampowered.com/api/appdetails?appids=";
+const steamDBurl="https://store.steampowered.com/api/appdetails?appids=";
 
 mongoose.connect('mongodb://localhost/thegamingnerd',{
     useNewUrlParser:true,
@@ -33,11 +33,22 @@ app.get('/games', async function(req,res){
     res.render('games/index', {allcards}) 
 });
 
+//ACTION
+
 //when action category is clicked
 app.get('/action', async function(req,res){  
     const allcards=await GameCard.find({});
     res.render('action',{allcards}) 
 });
+
+//to show specific action game card when clicked on it     ///games/:id
+app.get("/action/:id",async(req,res)=>{
+    const card=await GameCard.findById(req.params.id);
+    res.render('games/show',{card},{steamDBurl});
+});
+
+
+//FPS
 
 //when FPS category is clicked
 app.get('/fps', async function(req,res){  
@@ -45,8 +56,20 @@ app.get('/fps', async function(req,res){
     res.render('fps',{allcards}) 
 });
 
+//to show specific fps game card when clicked on it     ///games/:id
+app.get("/fps/:id",async(req,res)=>{
+    const card=await GameCard.findById(req.params.id);
+    res.render('games/show',{card},{steamDBurl});
+});
 
-//to show specific game card when clicked on it
+//to show specific game card when clicked on it     ///games/:id
+app.get("/action/:id",async(req,res)=>{
+    const card=await GameCard.findById(req.params.id);
+    res.render('games/show',{card},{steamDBurl});
+});
+
+
+//to show specific game card when clicked on it     ///games/:id
 app.get("/games/:id",async(req,res)=>{
     const card=await GameCard.findById(req.params.id);
     res.render('games/show',{card});
