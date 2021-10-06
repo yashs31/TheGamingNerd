@@ -3,6 +3,8 @@ const path=require('path');
 const mongoose=require('mongoose');
 const GameCard=require('./models/gamecard');
 
+const steamDB="https://store.steampowered.com/api/appdetails?appids=";
+
 mongoose.connect('mongodb://localhost/thegamingnerd',{
     useNewUrlParser:true,
     //useCreateIndex:true,
@@ -27,9 +29,22 @@ app.get('/', function(req,res){
 
 //when u got to localhost:3000/games
 app.get('/games', async function(req,res){  
-    const allcards=await GameCard.find({});
+    const allcards=await GameCard.find({});     //GameCard is the name of exported model from  models/gamecard.js
     res.render('games/index', {allcards}) 
 });
+
+//when action category is clicked
+app.get('/action', async function(req,res){  
+    const allcards=await GameCard.find({});
+    res.render('action',{allcards}) 
+});
+
+//when FPS category is clicked
+app.get('/fps', async function(req,res){  
+    const allcards=await GameCard.find({});
+    res.render('fps',{allcards}) 
+});
+
 
 //to show specific game card when clicked on it
 app.get("/games/:id",async(req,res)=>{

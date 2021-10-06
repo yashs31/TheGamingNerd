@@ -18,6 +18,7 @@ const seedDB=async()=>{
     for(let i=0;i<4;i++){
         //const random=Math.floor(Math.random()*3);
         const card=new GameCard({
+            gameid: `${games[i].gameid}`,
             image: `${games[i].image}`,
             title: `${games[i].title}`,
             price: `${games[i].price}`
