@@ -1,0 +1,133 @@
+* {
+    font-family: "Michroma", sans-serif;
+    /* margin: 0; */
+}
+
+body {
+    /* min-height: 100vh; */
+    /* background-color: hsl(206, 13%, 8%); */
+    /* background-color: #191e21 ; */
+    background: linear-gradient(
+        145deg,
+        hsl(206, 13%, 15%),
+        hsl(206, 13%, 5%)
+    );
+    overflow-x: hidden;
+    color: #9fd4ba;
+    margin: 0;
+    padding: 0;
+}
+
+.masked {
+    width: 200px;
+    height: 200px;
+    background-image: linear-gradient(
+        315deg,
+        #05e836 0%,
+        #08e1cf 74%
+    );
+
+    -webkit-mask-image: url(../assets/logo/logo.svg);
+    mask-image: url(../assets/logo/logo.svg);
+    /* -webkit-mask-size: cover; */
+    /* mask-size: cover; */
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.boxes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    /* margin:5px; */
+    width: 33.33%;
+    min-width: 300px;
+    height: 250px;
+    /* 131619 */
+    /* 191e21 */
+    /* background-color: hsl(206, 13%, 20%); */
+    background: linear-gradient(
+        145deg,
+        hsl(206, 13%, 20%),
+        hsl(206, 13%, 14%)
+    );
+    box-shadow: 20px 20px 50px #131619, -10px 10px 50px #191e21;
+    border-radius: 15px;
+    text-align: center;
+    /* background-image: linear-gradient(
+            315deg,
+            #05e836 0%,
+            #08e1cf 74%
+        ); */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+
+.box:hover img {
+    /* z-index: 9; */
+    transform: scale(1.1);
+}
+
+.container {
+    max-width: 1270px;
+    margin: auto;
+    padding: 20px;
+}
+
+img {
+    /* flex-shrink:0 ; */
+    object-fit: cover;
+    min-width: 100%;
+    /* min-height: 100%; */
+    transition: all 0.5s ease;
+    /* display: block; */
+    /* vertical-align: middle; */
+}
+
+.box::after {
+    content: "hello";
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(
+        145deg,
+        hsl(206, 13%, 20%),
+        hsl(206, 13%, 14%)
+    );
+    width: 100%;
+
+    /* height: 100%; */
+
+    /* color: #191e21; */
+    color: white;
+    padding: 10px 0;
+}
+
+.section-title {
+    /* background-color: red; */
+    /* display: flex; */
+    align-items: center;
+    width: fit-content;
+}
+
+.section-title h1 {
+    /* font-size: 72px; */
+    background-image: linear-gradient(
+        315deg,
+        #05e836 -20%,
+        #08e1cf 64%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* font-weight: 900; */
+}
