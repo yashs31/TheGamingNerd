@@ -44,7 +44,7 @@ app.get('/action', async function(req,res){
 //to show specific action game card when clicked on it     ///games/:id
 app.get("/action/:id",async(req,res)=>{
     const card=await GameCard.findById(req.params.id);
-    res.render('games/show',{card},{steamDBurl});
+    res.render('games/gamecardshow',{card},{steamDBurl});
 });
 
 
@@ -59,20 +59,20 @@ app.get('/fps', async function(req,res){
 //to show specific fps game card when clicked on it     ///games/:id
 app.get("/fps/:id",async(req,res)=>{
     const card=await GameCard.findById(req.params.id);
-    res.render('games/show',{card},{steamDBurl});
+    res.render('games/gamecardshow',{card},{steamDBurl});
 });
 
 //to show specific game card when clicked on it     ///games/:id
 app.get("/action/:id",async(req,res)=>{
     const card=await GameCard.findById(req.params.id);
-    res.render('games/show',{card},{steamDBurl});
+    res.render('games/gamecardshow',{card},{steamDBurl});
 });
 
 
 //to show specific game card when clicked on it     ///games/:id
 app.get("/games/:id",async(req,res)=>{
     const card=await GameCard.findById(req.params.id);
-    res.render('games/show',{card});
+    res.render('games/gamecardshow',{card});
 });
 
 app.listen(3000,()=>{
