@@ -3,6 +3,8 @@ const path=require('path');
 const mongoose=require('mongoose');
 const GameCard=require('./models/gamecard');
 const games = require("./seeds/games");
+const Review=require('./models/review');
+var bodyParser = require('body-parser')
 
 const steamDBurl = "https://store.steampowered.com/api/appdetails?appids=";
 
@@ -19,6 +21,7 @@ db.once("open", () => {
 });
 
 const app = express();
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -46,6 +49,15 @@ app.get("/action", async function (req, res) {
 app.get("/action/:id", async (req, res) => {
 	const card = await GameCard.findById(req.params.id);
 	res.render("games/gamecardshow", { card }, { steamDBurl });
+});
+
+app.post("/games/:id/reviews",async(req,res)=>{
+	const card=await GameCard.findById(req.param.id);
+	const review=new Review(req.body.review);
+	card.reviews.push(review);
+	await review.save();
+	await card.save();
+	res.send("You made it");
 });
 
 //FPS
@@ -83,6 +95,7 @@ const seedDB = async () => {
 			image: `${games[i].image}`,
 			title: `${games[i].title}`,
 			price: `${games[i].price}`,
+
 		});
 		await card.save();
 	}
