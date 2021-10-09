@@ -52,12 +52,13 @@ app.get("/action/:id", async (req, res) => {
 });
 
 app.post("/games/:id/reviews",async(req,res)=>{
-	const card=await GameCard.findById(req.param.id);
+	//res.send(""+req.params.id);
+	const card=await GameCard.findById(req.params.id);
 	const review=new Review(req.body.review);
 	card.reviews.push(review);
 	await review.save();
 	await card.save();
-	res.send("You made it");
+	res.redirect(`/games/${card._id}`);
 });
 
 //FPS
