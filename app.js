@@ -1,8 +1,12 @@
 const express =require('express');
 const path=require('path');
 const mongoose=require('mongoose');
-const GameCard=require('./models/gamecard');
 
+//MODELS
+const GameCard=require('./models/gamecard');
+const Review=require("./models/review");
+
+//
 const steamDBurl="https://store.steampowered.com/api/appdetails?appids=";
 
 mongoose.connect('mongodb://localhost/thegamingnerd',{
@@ -45,6 +49,16 @@ app.get('/action', async function(req,res){
 app.get("/action/:id",async(req,res)=>{
     const card=await GameCard.findById(req.params.id);
     res.render('games/gamecardshow',{card},{steamDBurl});
+});
+
+app.post("/games/:id/reviews",async(req,res)=>{
+    //res.send("You made it");
+    const card=await GameCard.findById(req.params.id);
+    const review=new Review(req.body.review);
+    card.reviews.push(review);
+    await review.save();
+    await card.save();
+    res.redirect(`/gamecard/${card._id}`);
 });
 
 

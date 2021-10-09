@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="/stylesheets/home.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Lounge</title>
     </head>
 
@@ -14,6 +16,19 @@
             <h1 class="GameName"><%= card.title %></h1>
             <img class="GameLogo" src="<%= card.image %>">
         </div>
+        <!--Form for the review system TODO: move later to appropriate place-->
+        <h2 style="color: white;">Leave a Review</h2>
+        <form action="/games/<%=card._id%>/reviews" method="POST">
+            <div class="mb-3">
+                <label for="rating" style="color: white;">Rating</label>
+                <input type="range" min="0" max="5" name="review[rating]" id="rating">
+            </div>
+            <div class="mb-3">
+                <label for="body" style="color: white;">Review</label><br>
+                <textarea name="review[body]" id="body" cols="30" rows="3"></textarea>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
         <div class="main">
             <div class="DescContainer">EARTH IS OURS NO MORE
     
@@ -21,9 +36,6 @@
     
     An outcast from her tribe, the young hunter fights to uncover her past, discover her destiny… and stop a catastrophic threat to the future.
     
-    Unleash devastating, tactical attacks against unique Machines and rival tribes as you explore an open world teeming with wildlife and danger.
-    
-    Horizon Zero Dawn™ is a multi-award-winning action role-playing game – and this Complete Edition for PC includes the huge expansion The Frozen Wilds, featuring new lands, skills, weapons and Machines.
             </div>
             <div class="GameDetails">
             <h3><u>GameDetails</u></h3>

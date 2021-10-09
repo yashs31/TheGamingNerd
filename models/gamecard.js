@@ -6,7 +6,13 @@ const GameCardSchema=new Schema({
     image:String,
     title:String,
     price:String,
-    description:String 
+    description:String ,
+    reviews:[
+        {
+            type:Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
 });
 
 module.exports=mongoose.model('GameCard',GameCardSchema);
