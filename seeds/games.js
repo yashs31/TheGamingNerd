@@ -4,7 +4,7 @@ const steamDBurl="https://store.steampowered.com/api/appdetails?appids="
 module.exports = [
     {
         gameid:"271590",
-        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_2744f112fa060320d191a50e8b3a92441a648a56.jpg",
+        image:"https://cdn.akamai.steamstatic.com/steam/apps/271590/ss_bd5db78286be0a7c6b2c62519099a9e27e6b06f3.1920x1080.jpg",
         title: "GTA 5",
         price: "8405837",
     },
