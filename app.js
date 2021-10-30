@@ -1,10 +1,12 @@
-const express =require('express');
-const path=require('path');
-const mongoose=require('mongoose');
-const GameCard=require('./models/gamecard');
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const GameCard = require('./models/gamecard');
 const games = require("./seeds/games");
-const Review=require('./models/review');
+const Review = require('./models/review');
 var bodyParser = require('body-parser')
+const catchAsync=require("./utils/catchAsync");
+const ExpressError = require('./utils/ExpressError');
 
 const steamDBurl = "https://store.steampowered.com/api/appdetails?appids=";
 
@@ -21,7 +23,7 @@ db.once("open", () => {
 });
 
 const app = express();
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -46,20 +48,20 @@ app.get("/action", async function (req, res) {
 });
 
 //to show specific action game card when clicked on it     ///games/:id
-app.get("/action/:id", async (req, res) => {
-	const card = await GameCard.findById(req.params.id);
+app.get("/action/:id", catchAsync(async (req, res) => {
+	const card = await GameCard.findById(req.params.id).populate('reviews');
 	res.render("games/gamecardshow", { card }, { steamDBurl });
-});
+}));
 
-app.post("/games/:id/reviews",async(req,res)=>{
+app.post("/games/:id/reviews", catchAsync(async (req, res, next) => {
 	//res.send(""+req.params.id);
-	const card=await GameCard.findById(req.params.id);
-	const review=new Review(req.body.review);
-	card.reviews.push(review);
-	await review.save();
-	await card.save();
-	res.redirect(`/games/${card._id}`);
-});
+		const card = await GameCard.findById(req.params.id);
+		const review = new Review(req.body.review);
+		card.reviews.push(review);
+		await review.save();
+		await card.save();
+		res.redirect(`/games/${card._id}`);
+}));
 
 //FPS
 
@@ -87,18 +89,41 @@ app.get("/games/:id", async (req, res) => {
 	res.render("games/gamecardshow", { card });
 });
 
+//------ERROR HANDLING--------
+
+// app.all('*', (req,res,next)=>{
+// 	next(new ExpressError('Page Not Found',404))
+// });
+
+app.use((err, req, res, next) => {
+	const{statusCode=500}=err;
+	if(!err.message) err.message='Something went wrong!!'
+	res.status(statusCode).render('error',{ err });
+	//res.send("Something went wrong")
+});
+
+
+//----------------------------
+
 const seedDB = async () => {
 	await GameCard.deleteMany({});
 	for (let i = 0; i < 4; i++) {
 		//const random=Math.floor(Math.random()*3);
 		const card = new GameCard({
 			gameid: `${games[i].gameid}`,
-			image: `${games[i].image}`,
+			//image: `${games[i].image}`,
 			title: `${games[i].title}`,
-			price: `${games[i].price}`,
-
-		});
+			headerImage: `${games[i].headerImage}`,
+			posterImage: `${games[i].posterImage}`,
+			developers: `${games[i].developers}`,
+			tags:`${games[i].tags.forEach(tag => {
+				//games[i].tags.push(tag)
+				console.log(tag)
+			})}`,
+			price: `${games[i].price}`
+		})
 		await card.save();
+		console.log("card "+i+" saved");
 	}
 	console.log("Seeding DB complete");
 };

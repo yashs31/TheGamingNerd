@@ -3,8 +3,12 @@ const Schema=mongoose.Schema; //no need to do mongoose.schema
 
 const GameCardSchema=new Schema({
     gameid:String,
-    image:String,
     title:String,
+    headerImage:String,
+    posterImage:String,
+    developers:String,
+    tags:[String],
+    metacriticScore:Number,
     price:String,
     description:String ,
     reviews:[

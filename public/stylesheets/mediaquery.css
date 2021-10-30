@@ -1,0 +1,108 @@
+@media (max-width: 890px) {
+	.gradient-title {
+		width: 100%;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.banner {
+		aspect-ratio: 16/6;
+	}
+	.game-details {
+		flex-direction: column;
+		align-items: center;
+	}
+	.poster,
+	.rate-stars {
+		transform: translateY(0);
+		height: auto;
+	}
+	.gdetails-left {
+		width: clamp(160px, 25vw, 500px);
+		height: auto;
+		transform: translateY(-15vw);
+		margin-bottom: -15vw;
+	}
+	.gdetails-right {
+		min-width: 100%;
+		margin: 20px 0 0 0;
+		flex-direction: column;
+	}
+	.game-title h1 {
+		text-align: center;
+	}
+	.card-image {
+		height: auto;
+	}
+	.categories img,
+	.genres img {
+		width: 60%;
+		height: 60%;
+	}
+	.game-score,
+	.game-score div {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		width: fit-content;
+	}
+	.game-score {
+		margin-top: 20px;
+	}
+	.game-score div:nth-child(2) {
+		margin-left: 10px;
+	}
+	.screenshots-gallery{
+		overflow: hidden;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	
+}
+
+@media (max-width: 648px) {
+	body {
+		font-size: x-small;
+	}
+	p {
+		font-size: small;
+	}
+	header {
+		padding: 10px;
+	}
+	.news .card a {
+		flex-direction: column;
+	}
+	.news-info,
+	.news-image {
+		width: fit-content;
+	}
+	.news-info {
+		margin: 10px;
+		padding-bottom: 10px;
+	}
+	.sys-req{
+		overflow: auto;
+	}
+	
+}
+
+@media (max-width: 450px){
+	.screenshots-gallery img{
+		width: 100%;
+	}
+}
+
+@media (max-width: 321px) {
+	.game-score {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.game-score,
+	.game-score div:nth-child(2) {
+		margin: 0;
+	}
+
+	.game-score div .score-circle {
+		margin-left: 10px;
+	}
+}

@@ -13,18 +13,22 @@ db.once("open", ()=> {
     console.log("Database connected");
 });
 
-const seedDB=async()=>{
+const seedDB = async () => {
     await GameCard.deleteMany({});
-    for(let i=0;i<4;i++){
-        //const random=Math.floor(Math.random()*3);
-        const card=new GameCard({
-            gameid: `${games[i].gameid}`,
-            image: `${games[i].image}`,
-            title: `${games[i].title}`,
-            price: `${games[i].price}`
-        })
-        await card.save();
-    }
+    for (let i = 0; i < 4; i++) {
+            //const random=Math.floor(Math.random()*3);
+            const card = new GameCard({
+                gameid: `${games[i].gameid}`,
+                //image: `${games[i].image}`,
+                title: `${games[i].title}`,
+                headerImage: `${games[i].headerImage}`,
+                posterImage: `${games[i].posterImage}`,
+                developers: `${games[i].developers}`,
+                tags:`${games[i].tags}`,
+                price: `${games[i].price}`
+            })
+            await card.save();
+        }
 }
 
 seedDB().then(()=>{

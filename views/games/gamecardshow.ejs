@@ -1,60 +1,144 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="/stylesheets/home.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <title>Lounge</title>
-    </head>
-
-    <body>
-        <div>
-            <img class="Banner" src="https://images.gog-statics.com/b8d9516624ae7b14acf41b3df5da523c87068f6c5729e36c11e0a43d3b5788b1_bg_crop_1920x655.jpg">
-        </div>
-            <h1 class="GameName"><%= card.title %></h1>
-            <img class="GameLogo" src="<%= card.image %>">
-        </div>
-        <!--Form for the review system TODO: move later to appropriate place-->
-        <h2 style="color: white;">Leave a Review</h2>
-        <form action="/games/<%=card._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
-            <div class="mb-3">
-                <label class="form-label" for="rating">Rating</label>
-                <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="body">Review</label>
-                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
-            </div>
-            <button class="btn btn-success">Submit</button>
-        </form>
-        <div class="main">
-            <div class="DescContainer">EARTH IS OURS NO MORE
-    
-    Experience Aloy’s entire legendary quest to unravel the mysteries of a world ruled by deadly Machines.
-    
-    An outcast from her tribe, the young hunter fights to uncover her past, discover her destiny… and stop a catastrophic threat to the future.
-    
-            </div>
-            <div class="GameDetails">
-            <h3><u>GameDetails</u></h3>
-            <h6>Genre: Action - Role-Playing - Scifi</h6>
-            <h6>Platforms: PC / PS4</h6>
-            <h6>Release: August 7, 2020</h6>
-            <h6>Developers: Guerrilla / PS Mobile, Inc.</h6>
-            <h6> Size: 68.1 GB </h6>
-            </div>
-            <div class="ImageGallery">
-                <a href="https://youtu.be/PNmop_vAPHY"><img src="https://img.youtube.com/vi/PNmop_vAPHY/hqdefault.jpg" alt=""></a>
-                <a href="https://youtu.be/zy5q0jnDhUI"><img src="https://img.youtube.com/vi/zy5q0jnDhUI/hqdefault.jpg" alt=""></a>
-                <a href="https://youtu.be/mwTqHGSVF54"><img src="https://img.youtube.com/vi/mwTqHGSVF54/hqdefault.jpg" alt=""></a>
-                <img src="https://images.gog-statics.com/b6912c7dd83e61fb2be522f7b9a705f633efe82067329e8ef71fe5770c17e6e6_product_card_v2_thumbnail_271.jpg">
-                <img src="https://images.gog-statics.com/87e3eb2675cb51ba707d73585bcca9e2abf8c6ecb6cdfa82489a3f0fac304407_product_card_v2_thumbnail_271.jpg">
-                <img src="https://images.gog-statics.com/344de62c9bd2953768096d0d7bfc06ae0ac31096c46ab2c4fc36981406490e57_product_card_v2_thumbnail_271.jpg">
-                <img src="https://images.gog-statics.com/bd7c1e1e0ab11dd802e351f3c12076e86ad52c9767b1bc1fb37ea4c947760881_product_card_v2_thumbnail_271.jpg">
-                <img src="https://images.gog-statics.com/ccec74570d10fd86fd4889f2b60d79f04a1b1d6472594bd66010b58e09ab92a1_product_card_v2_thumbnail_271.jpg">
-            </div>
-        </div>
-    </body>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Game show page</title>
+		<link rel="stylesheet" href="/stylesheets/global.css" />
+		<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
+		<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="banner gradient-div">
+				<img src="/assets/images/header.webp" alt="" />
+			</div>
+			<div class="game-details">
+				<div class="gdetails-left gradient-div">
+					<div class="poster">
+						<img src="<%=card.posterImage %>" alt="" />
+					</div>
+					<div class="rate-stars">***** stars here</div>
+				</div>
+				<div class="section gdetails-right gradient-div">
+					<div class="game-title-stats">
+						<div class="gradient-title">
+							<h1><%= card.title %></h1>
+						</div>
+						<div class="game-stats">
+						<p class="gradient-title">Developer:  <p><%=card.developers %></p></p><br>
+						<p class="gradient-title">Release Date: <p>22/6/2000</p></p><br>
+						
+						<p class="gradient-title">Platform: 
+							<div class="tags">
+                                <!-- generate tags using for loop -->
+                                <div class="tag"><p>windows</p></div>                              
+								<div class="tag"><p>windows</p></div>
+								<div class="tag"><p>windows</p></div>
+								<div class="tag"><p>windows</p></div>
+								<div class="tag"><p>windows</p></div>
+                                <div class="tag"><p>windows</p></div>
+							</div>
+						</p>
+							<br>
+						<p class="gradient-title">Tags: 
+							<div class="tags">
+                                <!-- generate tags using for loop -->
+                                <%for(let tag in card.tags) {%>
+                                <div class="tag"><p><%=card.tags%></p></div>
+                                <% } %>
+                                <!--
+								<div class="tag"><p>windows</p></div>
+								<div class="tag"><p>windows</p></div>
+								<div class="tag"><p>windows</p></div>
+								<div class="tag"><p>windows</p></div>
+								<div class="tag"><p>windows</p></div>
+                                <div class="tag"><p>windows</p></div>
+                                -->
+							</div>
+						</p>
+					</div>
+					</div>
+					<div class="game-score">
+						<div>
+							<p class="gradient-title">Metacritic Score</p>
+						<div class="score-circle">
+							<p><b>87</b><sub>/100</sub></p> 
+						</div>
+					</div>
+					<div>
+						<p class="gradient-title">User Score</p>
+						<div class="score-circle">
+							<p><b>90</b><sub>/100</sub></p> 
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="section about gradient-div">
+				<div class="gradient-title">
+					<h2>About the game</h2>
+				</div>
+				<div class="game-desc">
+					<p>
+						When a young street hustler, a retired bank robber and a
+						terrifying psychopath find themselves entangled with
+						some of the most frightening and deranged elements of
+						the criminal underworld, the U.S. government and the
+						entertainment industry, they must pull off a series of
+						dangerous heists to survive in a ruthless city in which
+						they can trust nobody, least of all each other.
+						<br /><br />Grand Theft Auto V for PC offers players the
+						option to explore the award-winning world of Los Santos
+						and Blaine County in resolutions of up to 4k and beyond,
+						as well as the chance to experience the game running at
+						60 frames per second.
+					</p>
+				</div>
+			</div>
+			<div class="section screenshots gradient-div">
+				<div class="gradient-title">
+					<h2>Screenshots</h2>
+				</div>
+				
+				<div class="screenshots-gallery">
+					<img src="/assets/images/gta.jpg" alt="">
+					<img src="/assets/images/gta.jpg" alt="">
+					<img src="/assets/images/gta.jpg" alt="">
+					<img src="/assets/images/gta.jpg" alt="">
+					<img src="/assets/images/gta.jpg" alt="">
+				</div>
+			</div>
+			<div class="section sys-req gradient-div">
+				<div class="gradient-title">
+					<h2>PC requirements</h2>
+				</div>
+				<div class="table-wrapper">
+					<!-- this part onwards in incomplete -->
+					<table >
+						<tr>
+							<th></th>
+							<th ><p>Minimum</p></th>
+							<th ><p>Recommended</p></th>
+						</tr>
+						<tr>
+							<td><p>OS:</p></td>
+							<td><p>Windows 10 64 Bit, Windows 8.1 64 Bit, Windows 8 64 Bit, Windows 7 64 Bit Service Pack 1</p></td>
+							
+							<td><p>Windows 10 64 Bit, Windows 8.1 64 Bit, Windows 8 64 Bit, Windows 7 64 Bit Service Pack 1</p></td>
+	
+						</tr>
+						<tr>
+							<td><p>Processor:</p> </td>
+							<td><p>Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4 CPUs) / AMD Phenom 9850 Quad-Core Processor (4 CPUs) @ 2.5GHz</p></td>
+							
+							<td><p>Intel Core i5 3470 @ 3.2GHz (4 CPUs) / AMD X8 FX-8350 @ 4GHz (8 CPUs)</p></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<!-- to add: price section, comments section -->
+		</div>
+	</body>
 </html>

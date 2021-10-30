@@ -1,0 +1,123 @@
+img {
+	object-position: top;
+}
+
+body{
+	background-color: black;
+}
+
+.banner {
+	aspect-ratio: 16/4.8;
+}
+
+.game-details {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+	align-items: flex-end;
+}
+.gdetails-left {
+	width: 230px;
+	height: 248px;
+}
+
+.poster {
+	transform: translateY(-150px);
+	overflow: hidden;
+	height: 345px;
+	border-top-left-radius: var(--border-radius);
+	border-top-right-radius: var(--border-radius);
+}
+
+.rate-stars {
+	padding: 15px;
+	transform: translateY(-150px);
+}
+
+.gdetails-right {
+	/* width: 100%; */
+	min-width: 581px;
+	flex: 2;
+
+	display: flex;
+	justify-content: space-between;
+	margin-left: 20px;
+}
+
+.section {
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.game-score div p {
+	margin: 5px auto;
+}
+
+.score-circle {
+	background: var(--title-text-gradient);
+	width: 70px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
+
+.score-circle > p > * {
+	color: #1e2327;
+}
+.score-circle p {
+	padding: 5px;
+}
+
+.gdetails-left.gradient-div {
+	overflow: visible;
+}
+
+.game-title-stats,
+.game-stats .gradient-title {
+	margin-right: 10px;
+}
+
+.game-title-stats p {
+	display: inline;
+}
+
+.tags {
+	margin-bottom: 0;
+}
+.table-wrapper{
+	min-width: 623px;
+}
+table {
+	width: 100%;
+}
+table td > * {
+	padding: 10px 20px 0 20px;
+}
+
+table th {
+	padding-bottom: 10px;
+}
+
+table td:nth-child(1) {
+	border-right: 1px solid;
+}
+table th {
+	border-bottom: 1px solid;
+}
+
+.screenshots-gallery {
+	display: flex;
+	/* justify-content: space-around; */
+	overflow-x: scroll;
+	
+	
+}
+.screenshots img {
+	width: 350px;
+	margin: 0 7px 15px 7px;
+	border-radius: var(--border-radius);
+}
