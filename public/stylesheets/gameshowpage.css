@@ -2,7 +2,7 @@ img {
 	object-position: top;
 }
 
-body{
+body {
 	background-color: black;
 }
 
@@ -25,7 +25,7 @@ body{
 .poster {
 	transform: translateY(-150px);
 	overflow: hidden;
-	height: 345px;
+	aspect-ratio: 2/3;
 	border-top-left-radius: var(--border-radius);
 	border-top-right-radius: var(--border-radius);
 }
@@ -88,7 +88,7 @@ body{
 .tags {
 	margin-bottom: 0;
 }
-.table-wrapper{
+.table-wrapper {
 	min-width: 623px;
 }
 table {
@@ -113,8 +113,6 @@ table th {
 	display: flex;
 	/* justify-content: space-around; */
 	overflow-x: scroll;
-	
-	
 }
 .screenshots img {
 	width: 350px;

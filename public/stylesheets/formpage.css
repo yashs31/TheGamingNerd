@@ -1,0 +1,54 @@
+form {
+	width: fit-content;
+	margin: auto;
+}
+
+table td,
+table td > * {
+	padding: 10px;
+}
+
+table td:nth-child(1) {
+	border-right: 2px solid;
+	text-align: right;
+}
+table td:nth-child(2) {
+	/* background-color: #fff; */
+	width: 700px;
+}
+input,
+textarea {
+	width: 100%;
+	background: hsl(206, 12%, 22%);
+}
+
+input:focus,
+textarea:focus {
+	outline: 2px solid;
+}
+
+input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	display: inline-flex;
+	margin: 5px;
+	/* background-image: var(--fallback-color); */
+}
+.buttons {
+	text-align: right;
+	margin: 10px;
+}
+button {
+	cursor: pointer;
+}
+button p {
+	color: var(--fallback-color);
+}
+
+button:nth-child(1) {
+	background: rgb(255, 110, 110);
+}
+
+button:nth-child(2) {
+	background: var(--title-text-gradient);
+}

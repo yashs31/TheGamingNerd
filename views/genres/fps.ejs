@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>FPS games</title>
+		<link rel="stylesheet" href="/stylesheets/global.css" />
+		<link rel="stylesheet" href="/stylesheets/gamecardspage.css" />
+		<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="gradient-title">
+				<h1>FPS games</h1>
+			</div>
+			<div class="card-gallery">
+				<!-- generate cards using for loop -->
+				<% for (let gamecard of allcards){%>
+
+				<div class="card gradient-div">
+					<a href="/games/<%=gamecard._id %>">
+						<div class="card-image">
+							<img src="<%=gamecard.headerImage %>" alt="" />
+						</div>
+						<div class="card-name">
+							<div class="tags">
+								<%for(let tag in gamecard.tags) {%>
+								<div class="tag">
+									<p><%=gamecard.tags[tag]%></p>
+								</div>
+								<% } %> <%for(let plt in gamecard.platforms) {%>
+								<div class="tag">
+									<p><%=gamecard.platforms[plt]%></p>
+								</div>
+								<% } %>
+							</div>
+							<div class="gradient-title">
+								<h2><%=gamecard.title%></h2>
+							</div>
+							<p>
+								Grand Theft Auto V for PC offers players the
+								option to explore the award-winning world of Los
+								Santos and Blaine County in resolutions of up to
+								4k and beyond.
+							</p>
+						</div>
+					</a>
+				</div>
+				<% } %>
+			</div>
+		</div>
+	</body>
+</html>

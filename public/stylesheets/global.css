@@ -1,16 +1,16 @@
 @font-face {
 	font-family: Vermin;
 	font-weight: 600;
-	src: url(VerminVibesV-Zlg3.ttf);
+	src: url(/assets/fonts/VerminVibesV-Zlg3.ttf);
 }
 @font-face {
 	font-family: Michroma;
-	src: url(Michroma-Regular.ttf);
+	src: url(/assets/fonts/Michroma-Regular.ttf);
 }
 
 @font-face {
 	font-family: Prompt;
-	src: url(Prompt-Regular.ttf);
+	src: url(/assets/fonts/Prompt-Regular.ttf);
 }
 
 :root {
