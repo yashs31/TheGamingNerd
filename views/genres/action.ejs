@@ -21,13 +21,13 @@
 				<div class="card gradient-div">
 					<a href="/games/<%=gamecard._id %>">
 						<div class="card-image">
-							<img src="<%=gamecard.header_image %>" alt="" />
+							<img src="<%=gamecard.screenshots[0] %>" alt="" />
 						</div>
 						<div class="card-name">
 							<div class="tags">
-								<%for(let tag in gamecard.tags) {%>
+								<%for(let gen in gamecard.genres) {%>
 								<div class="tag">
-									<p><%=gamecard.tags[tag]%></p>
+									<p><%=gamecard.genres[gen]%></p>
 								</div>
 								<% } %> <%for(let plt in gamecard.platforms) {%>
 								<div class="tag">
@@ -38,12 +38,7 @@
 							<div class="gradient-title">
 								<h2><%=gamecard.title%></h2>
 							</div>
-							<p>
-								Grand Theft Auto V for PC offers players the
-								option to explore the award-winning world of Los
-								Santos and Blaine County in resolutions of up to
-								4k and beyond.
-							</p>
+							<p><%=gamecard.short_description%></p>
 						</div>
 					</a>
 				</div>
