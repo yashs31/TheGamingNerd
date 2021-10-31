@@ -1,12 +1,12 @@
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const GameCard = require('./models/gamecard');
+const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const GameCard = require("./models/gamecard");
 const games = require("./seeds/games");
-const Review = require('./models/review');
-var bodyParser = require('body-parser')
-const catchAsync=require("./utils/catchAsync");
-const ExpressError = require('./utils/ExpressError');
+const Review = require("./models/review");
+var bodyParser = require("body-parser");
+const catchAsync = require("./utils/catchAsync");
+const ExpressError = require("./utils/ExpressError");
 
 const steamDBurl = "https://store.steampowered.com/api/appdetails?appids=";
 
@@ -30,7 +30,7 @@ app.set("views", path.join(__dirname, "views"));
 
 //home page
 app.get("/", function (req, res) {
-	res.render("home");
+	res.render("homepage");
 });
 
 //when u got to localhost:3000/games
@@ -42,51 +42,57 @@ app.get("/games", async function (req, res) {
 //ACTION
 
 //when action category is clicked
-app.get("/action", async function (req, res) {
-	const allcards = await GameCard.find({});
-	res.render("action", { allcards });
+app.get("/genres/action", async function (req, res) {
+	const allcards = await GameCard.find();
+	res.render("genres/action", { allcards });
 });
 
 //to show specific action game card when clicked on it     ///games/:id
-app.get("/action/:id", catchAsync(async (req, res) => {
-	const card = await GameCard.findById(req.params.id).populate('reviews');
-	res.render("games/gamecardshow", { card }, { steamDBurl });
-}));
+app.get(
+	"action/:id",
+	catchAsync(async (req, res) => {
+		const card = await GameCard.findById(req.params.id).populate("reviews");
+		res.render("games/gameshowpage", { card }, { steamDBurl });
+	})
+);
 
-app.post("/games/:id/reviews", catchAsync(async (req, res, next) => {
-	//res.send(""+req.params.id);
+app.post(
+	"/games/:id/reviews",
+	catchAsync(async (req, res, next) => {
+		//res.send(""+req.params.id);
 		const card = await GameCard.findById(req.params.id);
 		const review = new Review(req.body.review);
 		card.reviews.push(review);
 		await review.save();
 		await card.save();
 		res.redirect(`/games/${card._id}`);
-}));
+	})
+);
 
 //FPS
 
 //when FPS category is clicked
-app.get("/fps", async function (req, res) {
+app.get("/genres/fps", async function (req, res) {
 	const allcards = await GameCard.find({});
-	res.render("fps", { allcards });
+	res.render("genres/fps", { allcards });
 });
 
 //to show specific fps game card when clicked on it     ///games/:id
 app.get("/fps/:id", async (req, res) => {
 	const card = await GameCard.findById(req.params.id);
-	res.render("games/gamecardshow", { card }, { steamDBurl });
+	res.render("games/gameshowpage", { card }, { steamDBurl });
 });
 
-//to show specific game card when clicked on it     ///games/:id
-app.get("/action/:id", async (req, res) => {
-	const card = await GameCard.findById(req.params.id);
-	res.render("games/gamecardshow", { card }, { steamDBurl });
-});
+// //to show specific game card when clicked on it     ///games/:id
+// app.get("/action/:id", async (req, res) => {
+// 	const card = await GameCard.findById(req.params.id);
+// 	res.render("games/gameshowpage", { card }, { steamDBurl });
+// });
 
 //to show specific game card when clicked on it     ///games/:id
 app.get("/games/:id", async (req, res) => {
 	const card = await GameCard.findById(req.params.id);
-	res.render("games/gamecardshow", { card });
+	res.render("games/gameshowpage", { card });
 });
 
 //------ERROR HANDLING--------
@@ -96,12 +102,11 @@ app.get("/games/:id", async (req, res) => {
 // });
 
 app.use((err, req, res, next) => {
-	const{statusCode=500}=err;
-	if(!err.message) err.message='Something went wrong!!'
-	res.status(statusCode).render('error',{ err });
+	const { statusCode = 500 } = err;
+	if (!err.message) err.message = "Something went wrong!!";
+	res.status(statusCode).render("error", { err });
 	//res.send("Something went wrong")
 });
-
 
 //----------------------------
 
@@ -110,20 +115,18 @@ const seedDB = async () => {
 	for (let i = 0; i < 4; i++) {
 		//const random=Math.floor(Math.random()*3);
 		const card = new GameCard({
-			gameid: `${games[i].gameid}`,
+			gameid: games[i].gameid,
 			//image: `${games[i].image}`,
-			title: `${games[i].title}`,
-			headerImage: `${games[i].headerImage}`,
-			posterImage: `${games[i].posterImage}`,
-			developers: `${games[i].developers}`,
-			tags:`${games[i].tags.forEach(tag => {
-				//games[i].tags.push(tag)
-				console.log(tag)
-			})}`,
-			price: `${games[i].price}`
-		})
+			title: games[i].title,
+			headerImage: games[i].headerImage,
+			posterImage: games[i].posterImage,
+			developers: games[i].developers,
+			platforms: games[i].platforms,
+			tags: games[i].tags,
+			price: games[i].price,
+		});
 		await card.save();
-		console.log("card "+i+" saved");
+		console.log("card " + i + " saved");
 	}
 	console.log("Seeding DB complete");
 };

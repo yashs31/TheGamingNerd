@@ -1,0 +1,65 @@
+header {
+	display: flex;
+	/* flex-wrap: wrap; */
+	align-items: center;
+	padding: 20px;
+}
+
+.logo {
+	width: clamp(1rem, 12.5vw, 8rem);
+}
+
+.logo-text h1 {
+	font-family: "Vermin", sans-serif;
+	font-size: clamp(1.5rem, 4.5vw, 3rem);
+}
+
+.logo-text {
+	margin: 0 0 0 15px;
+}
+
+.categories .card {
+	width: 31.7%;
+}
+
+.categories img,
+.genres img{
+	margin: auto;
+	width: 150px;
+	height: 150px;
+}
+
+.genres .card {
+	width: 23.4%;
+}
+
+.card-image {
+	height: 220px;
+}
+
+.gradient-title {
+	margin-top: 20px;
+}
+
+.header-right {
+	margin-left: auto;
+}
+.news-content{
+	margin-bottom: 20px;
+}
+
+.news-content a{
+	display: flex;
+	
+}
+
+.news-info{
+	margin: 0 30px;
+	width: 65%;
+	padding-bottom: 20px;
+}
+
+.news-image{
+	width: 35%;
+	overflow: hidden;
+}

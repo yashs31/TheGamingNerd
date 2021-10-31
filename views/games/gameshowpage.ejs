@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Game show page</title>
+		<title><%= card.title %></title>
 		<link rel="stylesheet" href="/stylesheets/global.css" />
 		<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
 		<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
@@ -12,7 +12,7 @@
 	<body>
 		<div class="container">
 			<div class="banner gradient-div">
-				<img src="/assets/images/header.webp" alt="" />
+				<img src="<%=card.headerImage %>" alt="" />
 			</div>
 			<div class="game-details">
 				<div class="gdetails-left gradient-div">
@@ -27,52 +27,48 @@
 							<h1><%= card.title %></h1>
 						</div>
 						<div class="game-stats">
-						<p class="gradient-title">Developer:  <p><%=card.developers %></p></p><br>
-						<p class="gradient-title">Release Date: <p>22/6/2000</p></p><br>
-						
-						<p class="gradient-title">Platform: 
+							<p class="gradient-title">Developer:</p>
+							<p><%=card.developers %></p>
+							<br />
+							<p class="gradient-title">Release Date:</p>
+							<p>22/6/2000</p>
+							<br />
+
+							<p class="gradient-title">Platform:</p>
 							<div class="tags">
-                                <!-- generate tags using for loop -->
-                                <div class="tag"><p>windows</p></div>                              
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-                                <div class="tag"><p>windows</p></div>
+								<!-- generate tags using for loop -->
+								<%for(let plt in card.platforms) {%>
+								<div class="tag">
+									<p><%=card.platforms[plt]%></p>
+								</div>
+								<% } %>
 							</div>
-						</p>
-							<br>
-						<p class="gradient-title">Tags: 
+
+							<br />
+							<p class="gradient-title">Tags:</p>
 							<div class="tags">
-                                <!-- generate tags using for loop -->
-                                <%for(let tag in card.tags) {%>
-                                <div class="tag"><p><%=card.tags%></p></div>
-                                <% } %>
-                                <!--
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-                                <div class="tag"><p>windows</p></div>
-                                -->
+								<!-- generate tags using for loop -->
+								<%for(let tag in card.tags) {%>
+								<div class="tag">
+									<p><%=card.tags[tag]%></p>
+								</div>
+								<% } %>
 							</div>
-						</p>
-					</div>
+						</div>
 					</div>
 					<div class="game-score">
 						<div>
 							<p class="gradient-title">Metacritic Score</p>
-						<div class="score-circle">
-							<p><b>87</b><sub>/100</sub></p> 
+							<div class="score-circle">
+								<p><b>87</b><sub>/100</sub></p>
+							</div>
 						</div>
-					</div>
-					<div>
-						<p class="gradient-title">User Score</p>
-						<div class="score-circle">
-							<p><b>90</b><sub>/100</sub></p> 
+						<div>
+							<p class="gradient-title">User Score</p>
+							<div class="score-circle">
+								<p><b>90</b><sub>/100</sub></p>
+							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</div>
@@ -101,13 +97,13 @@
 				<div class="gradient-title">
 					<h2>Screenshots</h2>
 				</div>
-				
+
 				<div class="screenshots-gallery">
-					<img src="/assets/images/gta.jpg" alt="">
-					<img src="/assets/images/gta.jpg" alt="">
-					<img src="/assets/images/gta.jpg" alt="">
-					<img src="/assets/images/gta.jpg" alt="">
-					<img src="/assets/images/gta.jpg" alt="">
+					<img src="/assets/images/gta.jpg" alt="" />
+					<img src="/assets/images/gta.jpg" alt="" />
+					<img src="/assets/images/gta.jpg" alt="" />
+					<img src="/assets/images/gta.jpg" alt="" />
+					<img src="/assets/images/gta.jpg" alt="" />
 				</div>
 			</div>
 			<div class="section sys-req gradient-div">
@@ -116,24 +112,46 @@
 				</div>
 				<div class="table-wrapper">
 					<!-- this part onwards in incomplete -->
-					<table >
+					<table>
 						<tr>
 							<th></th>
-							<th ><p>Minimum</p></th>
-							<th ><p>Recommended</p></th>
+							<th><p>Minimum</p></th>
+							<th><p>Recommended</p></th>
 						</tr>
 						<tr>
 							<td><p>OS:</p></td>
-							<td><p>Windows 10 64 Bit, Windows 8.1 64 Bit, Windows 8 64 Bit, Windows 7 64 Bit Service Pack 1</p></td>
-							
-							<td><p>Windows 10 64 Bit, Windows 8.1 64 Bit, Windows 8 64 Bit, Windows 7 64 Bit Service Pack 1</p></td>
-	
+							<td>
+								<p>
+									Windows 10 64 Bit, Windows 8.1 64 Bit,
+									Windows 8 64 Bit, Windows 7 64 Bit Service
+									Pack 1
+								</p>
+							</td>
+
+							<td>
+								<p>
+									Windows 10 64 Bit, Windows 8.1 64 Bit,
+									Windows 8 64 Bit, Windows 7 64 Bit Service
+									Pack 1
+								</p>
+							</td>
 						</tr>
 						<tr>
-							<td><p>Processor:</p> </td>
-							<td><p>Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4 CPUs) / AMD Phenom 9850 Quad-Core Processor (4 CPUs) @ 2.5GHz</p></td>
-							
-							<td><p>Intel Core i5 3470 @ 3.2GHz (4 CPUs) / AMD X8 FX-8350 @ 4GHz (8 CPUs)</p></td>
+							<td><p>Processor:</p></td>
+							<td>
+								<p>
+									Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4
+									CPUs) / AMD Phenom 9850 Quad-Core Processor
+									(4 CPUs) @ 2.5GHz
+								</p>
+							</td>
+
+							<td>
+								<p>
+									Intel Core i5 3470 @ 3.2GHz (4 CPUs) / AMD
+									X8 FX-8350 @ 4GHz (8 CPUs)
+								</p>
+							</td>
 						</tr>
 					</table>
 				</div>

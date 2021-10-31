@@ -1,0 +1,16 @@
+.card-name .gradient-title {
+	margin: 0;
+}
+
+.card {
+	width: 290px;
+	text-align: left;
+}
+
+.card-image {
+	height: 200px;
+}
+
+.card-name > p {
+	margin: 10px 0;
+}

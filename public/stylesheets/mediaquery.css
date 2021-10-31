@@ -1,8 +1,6 @@
 @media (max-width: 890px) {
 	.gradient-title {
 		width: 100%;
-		margin-top: 10px;
-		margin-bottom: 10px;
 	}
 	.banner {
 		aspect-ratio: 16/6;
@@ -14,7 +12,6 @@
 	.poster,
 	.rate-stars {
 		transform: translateY(0);
-		height: auto;
 	}
 	.gdetails-left {
 		width: clamp(160px, 25vw, 500px);
@@ -51,12 +48,11 @@
 	.game-score div:nth-child(2) {
 		margin-left: 10px;
 	}
-	.screenshots-gallery{
+	.screenshots-gallery {
 		overflow: hidden;
 		flex-wrap: wrap;
 		justify-content: space-around;
 	}
-	
 }
 
 @media (max-width: 648px) {
@@ -69,7 +65,10 @@
 	header {
 		padding: 10px;
 	}
-	.news .card a {
+	.container {
+		padding: 10px;
+	}
+	.news-content a {
 		flex-direction: column;
 	}
 	.news-info,
@@ -80,14 +79,20 @@
 		margin: 10px;
 		padding-bottom: 10px;
 	}
-	.sys-req{
+	.sys-req {
 		overflow: auto;
 	}
-	
+	.gradient-title {
+		margin-top: 0;
+		margin-bottom: 10px;
+	}
+	.section {
+		padding: 10px;
+	}
 }
 
-@media (max-width: 450px){
-	.screenshots-gallery img{
+@media (max-width: 450px) {
+	.screenshots-gallery img {
 		width: 100%;
 	}
 }
