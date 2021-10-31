@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema; //no need to do mongoose.schema
 
 const GameCardSchema = new Schema({
-	gameid: String,
+	game_id: Number,
 	title: String,
-	headerImage: String,
-	posterImage: String,
+	short_description:String,
+	long_description:String,
+	header_image: String,
+	poster_image: String,
 	developers: String,
 	platforms: [String],
+	genres:[String],
 	tags: [String],
-	metacriticScore: Number,
+	metacritic: Number,
 	price: String,
 	description: String,
+	release_date:String,
 	reviews: [
 		{
 			type: Schema.Types.ObjectId,

@@ -8,16 +8,17 @@
 		<link rel="stylesheet" href="/stylesheets/global.css" />
 		<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
 		<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</head>
 	<body>
 		<div class="container">
 			<div class="banner gradient-div">
-				<img src="<%=card.headerImage %>" alt="" />
+				<img src="<%=card.header_image %>" alt="" />
 			</div>
 			<div class="game-details">
 				<div class="gdetails-left gradient-div">
 					<div class="poster">
-						<img src="<%=card.posterImage %>" alt="" />
+						<img src="<%=card.poster_image %>" alt="" />
 					</div>
 					<div class="rate-stars">***** stars here</div>
 				</div>
@@ -31,7 +32,7 @@
 							<p><%=card.developers %></p>
 							<br />
 							<p class="gradient-title">Release Date:</p>
-							<p>22/6/2000</p>
+							<p><%=card.release_date %></p>
 							<br />
 
 							<p class="gradient-title">Platform:</p>
@@ -60,7 +61,7 @@
 						<div>
 							<p class="gradient-title">Metacritic Score</p>
 							<div class="score-circle">
-								<p><b>87</b><sub>/100</sub></p>
+								<p><b><%=card.metacritic%></b><sub>/100</sub></p>
 							</div>
 						</div>
 						<div>
@@ -78,18 +79,7 @@
 				</div>
 				<div class="game-desc">
 					<p>
-						When a young street hustler, a retired bank robber and a
-						terrifying psychopath find themselves entangled with
-						some of the most frightening and deranged elements of
-						the criminal underworld, the U.S. government and the
-						entertainment industry, they must pull off a series of
-						dangerous heists to survive in a ruthless city in which
-						they can trust nobody, least of all each other.
-						<br /><br />Grand Theft Auto V for PC offers players the
-						option to explore the award-winning world of Los Santos
-						and Blaine County in resolutions of up to 4k and beyond,
-						as well as the chance to experience the game running at
-						60 frames per second.
+						<%=card.description %>
 					</p>
 				</div>
 			</div>
@@ -157,6 +147,23 @@
 				</div>
 			</div>
 			<!-- to add: price section, comments section -->
+			<form action="/games/<%=card._id%>/reviews" method="POST" class="mb-3 validated-form">
+				<div class="mb-3">
+					<label class="form-label" for="rating">Rating</label>
+					<input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating" required>
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="body">Reviews</label>
+					<textarea class="form-control" name="review[body]" id="body" cols="30" rows="1" required></textarea>
+				</div>
+				<button class="btn btn-success">Submit</button>
+			</form>
+			<% for(let review in card.reviews) { %>
+			<div class="mb-3">
+				<p>Rating: <%= review.rating %></p>
+				<p>Review: <%= review.body %></p>
+			</div>
+			<% } %>
 		</div>
 	</body>
 </html>

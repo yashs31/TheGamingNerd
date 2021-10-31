@@ -23,3 +23,6 @@ Frontend:
 ![](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
 > Currently in development 
+
+# TODO
+- [ ] Dynamic routes from the home page based on categories     eg /genres/dynamic_category
