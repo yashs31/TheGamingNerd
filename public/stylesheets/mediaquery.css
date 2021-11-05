@@ -43,7 +43,7 @@
 		width: fit-content;
 	}
 	.game-score {
-		margin-top: 20px;
+		margin-top: 10px;
 	}
 	.game-score div:nth-child(2) {
 		margin-left: 10px;
@@ -59,7 +59,8 @@
 	body {
 		font-size: x-small;
 	}
-	p {
+	p,
+	li {
 		font-size: small;
 	}
 	header {

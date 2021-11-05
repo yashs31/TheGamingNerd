@@ -39,7 +39,8 @@
 	color: var(--text-color);
 }
 
-p {
+p,
+li {
 	font-family: "Prompt", sans-serif;
 	font-size: large;
 }
@@ -53,12 +54,9 @@ body {
 div {
 	transition: all 0.2s ease;
 }
-
 li {
-	list-style: none;
-	display: inline-block;
+	margin-left: 20px;
 }
-
 a {
 	text-decoration: none;
 }
@@ -92,7 +90,7 @@ img {
 
 .card-gallery {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	flex-wrap: wrap;
 	overflow: visible;
 	text-align: center;

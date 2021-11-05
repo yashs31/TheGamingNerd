@@ -42,7 +42,7 @@ app.get("/games", async function (req, res) {
 //ACTION
 //when action category is clicked, only games with the below specified tags will be shown
 app.get("/genres/action", async function (req, res) {
-	const allcards = await GameCard.find({genres: { $all: ["action"]}});	//$all is added to find wrt all the tags specified.
+	const allcards = await GameCard.find({ genres: { $all: ["action"] } }); //$all is added to find wrt all the tags specified.
 	res.render("genres/action", { allcards });
 });
 
@@ -75,7 +75,7 @@ app.post(
 
 //when FPS category is clicked, only games with the below specified tags will be shown
 app.get("/genres/fps", async function (req, res) {
-	const allcards = await GameCard.find({genres: { $all: ["fps"]}});
+	const allcards = await GameCard.find({ genres: { $all: ["fps"] } });
 	res.render("genres/fps", { allcards });
 });
 
@@ -102,23 +102,25 @@ app.use((err, req, res, next) => {
 
 const seedDB = async () => {
 	await GameCard.deleteMany({});
-	for (let i = 0; i < 4; i++) {
+	for (let i = 0; i < games.length; i++) {
 		//const random=Math.floor(Math.random()*3);
 		const card = new GameCard({
 			game_id: games[i].game_id,
-			//image: `${games[i].image}`,
 			title: games[i].title,
+			short_description: games[i].short_description,
+			long_description: games[i].long_description,
 			header_image: games[i].header_image,
 			poster_image: games[i].poster_image,
+			website: games[i].website,
+			pc_requirements: games[i].pc_requirements,
 			developers: games[i].developers,
 			platforms: games[i].platforms,
-			genres:games[i].genres,
+			genres: games[i].genres,
 			tags: games[i].tags,
-			metacritic:games[i].metacritic,
-			description:games[i].description,
-			price: games[i].price,
+			metacritic: games[i].metacritic,
+			screenshots: games[i].screenshots,
+			release_date: games[i].release_date,
 			//reviews:games[i].reviews,
-			release_date:games[i].release_date
 		});
 		await card.save();
 	}
@@ -127,6 +129,7 @@ const seedDB = async () => {
 
 app.listen(3000, () => {
 	console.log("Serving on port 3000");
+	console.log(games.length);
 	seedDB();
 });
 

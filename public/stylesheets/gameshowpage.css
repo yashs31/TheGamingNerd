@@ -53,6 +53,9 @@ body {
 .game-score div p {
 	margin: 5px auto;
 }
+.game-score .gradient-title {
+	text-align: center;
+}
 
 .score-circle {
 	background: var(--title-text-gradient);
@@ -88,11 +91,15 @@ body {
 .tags {
 	margin-bottom: 0;
 }
+
 .table-wrapper {
 	min-width: 623px;
 }
 table {
 	width: 100%;
+}
+table td {
+	width: 50%;
 }
 table td > * {
 	padding: 10px 20px 0 20px;
@@ -100,13 +107,11 @@ table td > * {
 
 table th {
 	padding-bottom: 10px;
+	border-bottom: 2px solid;
 }
 
 table td:nth-child(1) {
-	border-right: 1px solid;
-}
-table th {
-	border-bottom: 1px solid;
+	border-right: 2px solid;
 }
 
 .screenshots-gallery {
