@@ -21,10 +21,16 @@
 				</div>
 				<div class="header-right">
 					<!-- to add: login, signup, search bar -->
-					login and search bar here
+					<% if(!currentUser) {%>
+					<a href="/login" style="background-color: red;">Login</a>
+					<a href="/register" style="background-color: green;">Sign-up</a>
+					<% } else {%>
+					<a href="/logout" style="background-color: red;">Logout</a>
+					<% } %>
+					search bar here
 				</div>
 			</header>
-
+			<!--<%- include("./partials/flash") %>-->
 			<div class="section categories">
 				<div class="gradient-title">
 					<h1>Categories</h1>

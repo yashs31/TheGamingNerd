@@ -9,9 +9,13 @@ const Comment = require("./models/review");
 var bodyParser = require("body-parser");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
+const passport=require("passport");
+const LocalStrategy=require("passport-local");
+const User=require("./models/user");
 
-const allgames=require('./routes/games');
-const comments=require('./routes/comments');
+const userRoutes=require("./routes/users");
+const gamesRoutes=require('./routes/games');
+const commentsRoutes=require('./routes/comments');
 
 
 const steamDBurl = "https://store.steampowered.com/api/appdetails?appids=";
@@ -45,11 +49,20 @@ const sessionConfig={
 		maxAge:1000*60*60*24*7
 	}
 }
+
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate())); //PREDEFINED PASSPORT METHOD
+
+passport.serializeUser(User.serializeUser());//HOW TO STORE USER INTO SESSION
+passport.deserializeUser(User.deserializeUser());//HOW TO GET USER OUT OF SESSION
+
 //-------WILL USE FLASH MESSAGES FOR AUTH----
 app.use((req,res,next)=>{
+	res.locals.currentUser=req.user;		//ACCESS TO user IN ALL ejs TEMPLATES
 	res.locals.success=req.flash('success');
 	res.locals.error=req.flash('error');
 	next();
@@ -57,9 +70,11 @@ app.use((req,res,next)=>{
 //------------------------------------------
 
 
+
 //-----WILL APPEND THE SPECIFIC STRING AS PREFIX TO ALL ROUTES IN THE routes FOLDER. DONE TO CLEANUP THE APP.JS
-app.use("/games", allgames);
-app.use("/games/:id/comments",comments)
+app.use("/",userRoutes);
+app.use("/games", gamesRoutes);
+app.use("/games/:id/comments",commentsRoutes)
 
 //home page
 app.get("/", function (req, res) {
