@@ -182,3 +182,25 @@ button {
 ::-webkit-resize {
 	background-color: red;
 }
+
+
+footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+}
+
+footer p {
+	display: flex;
+	align-items: center;
+}
+
+footer .logo {
+	width: 40px;
+}
+
+footer .footline img {
+	width: 30px;
+	margin: 0 7px;
+}

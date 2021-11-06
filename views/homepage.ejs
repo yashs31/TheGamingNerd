@@ -22,12 +22,13 @@
 				<div class="header-right">
 					<!-- to add: login, signup, search bar -->
 					<% if(!currentUser) {%>
-					<a href="/login" style="background-color: red;">Login</a>
-					<a href="/register" style="background-color: green;">Sign-up</a>
+					<a href="/login" style="background-color: red">Login</a>
+					<a href="/register" style="background-color: green"
+						>Sign-up</a
+					>
 					<% } else {%>
-					<a href="/logout" style="background-color: red;">Logout</a>
-					<% } %>
-					search bar here
+					<a href="/logout" style="background-color: red">Logout</a>
+					<% } %> search bar here
 				</div>
 			</header>
 			<!--<%- include("./partials/flash") %>-->
@@ -126,77 +127,47 @@
 					<h1>News & Articles</h1>
 				</div>
 				<!-- generate news using for loop -->
+				<% for (let news in newscard) {%>
+
 				<div class="news-content gradient-div">
-					<a href="#">
+					<a href="news/<%=newscard[news]._id%>">
 						<div class="news-image">
-							<img src="assets/images/trilogy.webp" alt="" />
+							<img src="<%=newscard[news].thumbnail%>" alt="" />
 						</div>
 						<div class="news-info">
 							<div class="gradient-title">
-								<h2>
-									Remastered GTA Trilogy to get November 11
-									release on console and PC
-								</h2>
+								<h2><%=newscard[news].headline%></h2>
 							</div>
 							<div class="tags">
 								<!-- generate tags using for loop -->
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
+								<% for (let tag in newscard[news].tags) {%>
+								<div class="tag">
+									<p><%=newscard[news].tags[tag]%></p>
+								</div>
+								<% } %>
 							</div>
 							<div class="news-desc">
-								<p>
-									Grand Theft Auto: The Trilogy – The
-									Definitive Edition is now available for
-									preorder from $60 on console and PC. GTA:
-									San Andreas will also be included in Xbox
-									Game Pass from Nov. 11, while GTA III joins
-									PlayStation Now one month later on Dec. 7,
-									2021.
-								</p>
+								<p><%=newscard[news].sdesc%></p>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div class="news-content gradient-div">
-					<a href="#">
-						<div class="news-image">
-							<img src="assets/images/trilogy.webp" alt="" />
-						</div>
-						<div class="news-info">
-							<div class="gradient-title">
-								<h2>
-									Remastered GTA Trilogy to get November 11
-									release on console and PC
-								</h2>
-							</div>
-							<div class="tags">
-								<!-- generate tags using for loop -->
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-								<div class="tag"><p>windows</p></div>
-							</div>
-							<div class="news-desc">
-								<p>
-									Grand Theft Auto: The Trilogy – The
-									Definitive Edition is now available for
-									preorder from $60 on console and PC. GTA:
-									San Andreas will also be included in Xbox
-									Game Pass from Nov. 11, while GTA III joins
-									PlayStation Now one month later on Dec. 7,
-									2021.
-								</p>
-							</div>
-						</div>
-					</a>
-				</div>
+				<% } %>
 			</div>
+			<footer>
+				<div class="logo">
+					<a href="/"
+						><img src="assets/logo/logo-gradient.svg" alt=""
+					/></a>
+				</div>
+				<div class="footline">
+					<p>
+						Made with <img src="assets/icons/heart.svg" alt="" />
+						<a href="/developers">by gamers,&nbsp;</a>
+						for gamers
+					</p>
+				</div>
+			</footer>
 		</div>
 	</body>
 </html>

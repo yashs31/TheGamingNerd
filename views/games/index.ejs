@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Lounge</title>
-    </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Games Lounge</title>
+	</head>
 
-    <body>  <!--All game show page which loops to show all the game cards-->
-        <h1>All Games</h1>
-        <ul>
-            <% for (let gamecard of allcards){%>
-                <li>
-                    <a href="/games/<%=gamecard._id %>"><%=gamecard.title %></a>
-                </li>
-            <% } %>
-        </ul>
-    </body>
+	<body>
+		<!--All game show page which loops to show all the game cards-->
+		<h1>All Games</h1>
+		<ul>
+			<% for (let gamecard of allcards){%>
+			<li>
+				<a href="/games/<%=gamecard._id %>"><%=gamecard.title %></a>
+			</li>
+			<% } %>
+		</ul>
+	</body>
 </html>

@@ -1,0 +1,41 @@
+.desc {
+	margin-top: 30px;
+}
+
+.desc img {
+	border-radius: var(--border-radius);
+}
+
+.desc-header img {
+	margin-bottom: 20px;
+	height: 55vh;
+}
+
+.img-gallery {
+	margin: 25px 0;
+	display: flex;
+	justify-content: space-evenly;
+}
+.img-gallery img {
+	width: 45%;
+	height: auto;
+}
+
+.news-info {
+	margin: 40px 0;
+}
+
+.news-info > div,
+.news-info > div a {
+	display: flex;
+}
+
+.news-info > div p {
+	margin: 0 10px 0 0;
+}
+
+.long-desc h1,
+.long-desc h2,
+.long-desc h3 {
+	font-family: "Prompt", sans-serif;
+}

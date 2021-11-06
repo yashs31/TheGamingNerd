@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%=card.headline %></title>
+		<link rel="stylesheet" href="/stylesheets/global.css" />
+		<link rel="stylesheet" href="/stylesheets/newspage.css" />
+		<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="gradient-title">
+				<h1>
+					<!-- headline -->
+					<%=card.headline %>
+				</h1>
+			</div>
+			<div class="desc">
+				<div class="desc-header">
+					<!-- thumbnail -->
+					<img src="<%=card.thumbnail %>" alt="" />
+					<div class="gradient-title">
+						<h3>
+							<!-- sdesc -->
+							<%=card.sdesc %>
+						</h3>
+					</div>
+					<div class="long-desc">
+						<!-- ldesc1 -->
+						<p><%-card.ldesc1 %></p>
+					</div>
+				</div>
+
+				<div class="img-gallery">
+					<img src="<%-card.image1 %>" alt="" />
+					<img src="<%-card.image2 %>" alt="" />
+				</div>
+				<div class="long-desc">
+					<!-- ldesc2 -->
+					<p><%-card.ldesc2 %></p>
+					<pre></pre>
+				</div>
+				<div class="news-info">
+					<div>
+						<a href="<%-card.source %>" target="_blank">
+							<p class="gradient-title">Source:</p>
+							<p>
+								<%- new
+								URL(card.source).hostname.replace('www.',''); %>
+							</p>
+						</a>
+					</div>
+					<div>
+						<p class="gradient-title">Date:</p>
+						<p><%-card.date %></p>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<div class="logo">
+					<a href="/"
+						><img src="../assets/logo/logo-gradient.svg" alt=""
+					/></a>
+				</div>
+				<div class="footline">
+					<p>
+						Made with <img src="../assets/icons/heart.svg" alt="" />
+						<a href="/developers">by gamers,&nbsp;</a>
+						for gamers
+					</p>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

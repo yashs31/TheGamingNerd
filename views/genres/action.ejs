@@ -17,7 +17,7 @@
 			<div class="card-gallery">
 				<!-- generate cards using for loop -->
 				<% for (let gamecard of allcards){%>
-
+				
 				<div class="card gradient-div">
 					<!--WHEN CLICKED ON A SPECIFIC GAME BELOW ROUTE WILL BE HIT-->
 					<a href="/games/<%=gamecard._id %>">
@@ -45,6 +45,20 @@
 				</div>
 				<% } %>
 			</div>
+			<footer>
+				<div class="logo">
+					<a href="/"
+						><img src="../assets/logo/logo-gradient.svg" alt=""
+					/></a>
+				</div>
+				<div class="footline">
+					<p>
+						Made with <img src="../assets/icons/heart.svg" alt="" />
+						<a href="/developers">by gamers,&nbsp;</a>
+						for gamers
+					</p>
+				</div>
+			</footer>
 		</div>
 	</body>
 </html>

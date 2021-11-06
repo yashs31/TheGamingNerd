@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>News Lounge</title>
+	</head>
+
+	<body>
+		<!--All newspage which loops to show all the news cards-->
+		<h1>All News & Articles</h1>
+		<ul>
+			<% for (let newscard of allcards){%>
+			<li>
+				<a href="/news/<%=newscard._id %>"><%=newscard.headline %></a>
+			</li>
+			<% } %>
+		</ul>
+	</body>
+</html>
