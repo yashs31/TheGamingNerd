@@ -19,6 +19,7 @@
 				<% for (let gamecard of allcards){%>
 
 				<div class="card gradient-div">
+					<!--WHEN CLICKED ON A SPECIFIC GAME BELOW ROUTE WILL BE HIT-->
 					<a href="/games/<%=gamecard._id %>">
 						<div class="card-image">
 							<img src="<%=gamecard.screenshots[0] %>" alt="" />

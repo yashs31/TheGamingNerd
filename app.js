@@ -1,12 +1,18 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const session=require("express-session");
+const flash=require('connect-flash');
 const GameCard = require("./models/gamecard");
 const games = require("./seeds/games");
-const Review = require("./models/review");
+const Comment = require("./models/review");
 var bodyParser = require("body-parser");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
+
+const allgames=require('./routes/games');
+const comments=require('./routes/comments');
+
 
 const steamDBurl = "https://store.steampowered.com/api/appdetails?appids=";
 
@@ -27,17 +33,39 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static(__dirname + "/public"));
+
+const sessionConfig={
+	secret: 'thisshouldbeabettersecret',
+	resave:false,
+	saveUninitialized:true,
+	cookie:{
+		httpOnly:true,
+		expires:Date.now() + 1000*60*60*24*7,
+		maxAge:1000*60*60*24*7
+	}
+}
+app.use(session(sessionConfig));
+app.use(flash());
+
+//-------WILL USE FLASH MESSAGES FOR AUTH----
+app.use((req,res,next)=>{
+	res.locals.success=req.flash('success');
+	res.locals.error=req.flash('error');
+	next();
+})
+//------------------------------------------
+
+
+//-----WILL APPEND THE SPECIFIC STRING AS PREFIX TO ALL ROUTES IN THE routes FOLDER. DONE TO CLEANUP THE APP.JS
+app.use("/games", allgames);
+app.use("/games/:id/comments",comments)
 
 //home page
 app.get("/", function (req, res) {
 	res.render("homepage");
 });
-
-//when u got to localhost:3000/games
-app.get("/games", async function (req, res) {
-	const allcards = await GameCard.find({}); //GameCard is the name of exported model from  models/gamecard.js
-	res.render("games/index", { allcards });
-});
+//-------------------------------------------------------------------------------------
 
 //ACTION
 //when action category is clicked, only games with the below specified tags will be shown
@@ -46,30 +74,17 @@ app.get("/genres/action", async function (req, res) {
 	res.render("genres/action", { allcards });
 });
 
+// ------------------NOT HITTING THIS ROUTE------------------------
 // to show specific action game card when clicked on it     ///games/:id
-app.get(
-	"action/:id",
-	catchAsync(async (req, res) => {
-		const card = await GameCard.findById(req.params.id).populate("reviews");
-		res.render("games/gameshowpage", { card });
-	})
-);
+// app.get("/action/:id",
+// 	catchAsync(async (req, res) => {
+// 		const card = await GameCard.findById(req.params.id).populate("comments");
+// 		res.render("games/gameshowpage", { card });
+// 	})
+// );
+//--------------------------------------------------------------------
 
-app.post(
-	"/games/:id/reviews",
-	catchAsync(async (req, res, next) => {
-		//res.send(""+req.params.id);
-		const card = await GameCard.findById(req.params.id);
-		const review = new Review(req.body.review);
-		card.reviews.push(review);
-		await review.save();
-		await card.save();
-		res.redirect(`/games/${card._id}`);
-		console.log(card.reviews);
-		//console.log(card.reviews.body);
-		//console.log(card.reviews.rating)
-	})
-);
+
 
 //FPS
 
@@ -79,11 +94,19 @@ app.get("/genres/fps", async function (req, res) {
 	res.render("genres/fps", { allcards });
 });
 
-//to show specific game card when clicked on it     ///games/:id
+
+//-----------------------------SHOW THE GAME THAT IS SELECTED FROM ALL THE AVAILABLE GAMES LIST------------------
+//-----------------------------COMMON TO ALL CATEGORIES----------------------------------------------------------
+//--------------------ANY GAME CLICKED IN ANY CATEGORY WILL HIT THIS ROUTE--------------------------------
+//games/:id
 app.get("/games/:id", async (req, res) => {
-	const card = await GameCard.findById(req.params.id);
+	const card = await GameCard.findById(req.params.id).populate("comments");
+	console.log(card.comments);
+	console.log("-------------------------------");
+	console.log(card.comments.body);
 	res.render("games/gameshowpage", { card });
 });
+//--------------------------------------------------------------------------------------------------------------
 
 //------ERROR HANDLING--------
 
@@ -133,6 +156,6 @@ app.listen(3000, () => {
 	seedDB();
 });
 
-app.use(express.static(__dirname + "/public"));
+
 
 //run mongodb server with command "mongod" from bin folder

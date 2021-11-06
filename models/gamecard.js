@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Comment=require("./review")
 const Schema = mongoose.Schema; //no need to do mongoose.schema
 
 const GameCardSchema = new Schema({
@@ -17,12 +18,22 @@ const GameCardSchema = new Schema({
 	metacritic: Number,
 	screenshots: [String],
 	release_date: String,
-	reviews: [
+	comments: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: "Review",
+			ref: "Comment",
 		},
 	],
 });
+
+GameCardSchema.post('findOneAndDelete', async function(doc){
+	if(doc){
+		await Comment.deleteMany({
+			_id:{
+				$in: doc.comments
+			}
+		})
+	}
+})
 
 module.exports = mongoose.model("GameCard", GameCardSchema);

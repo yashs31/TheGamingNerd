@@ -1,173 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title><%= card.title %></title>
-		<link rel="stylesheet" href="/stylesheets/global.css" />
-		<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
-		<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
-		<!-- <link
-			rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-			crossorigin="anonymous"
-		/> -->
-	</head>
-	<body>
-		<div class="container">
-			<div class="banner gradient-div">
-				<img src="<%=card.header_image %>" alt="" />
-			</div>
-			<div class="game-details">
-				<div class="gdetails-left gradient-div">
-					<div class="poster">
-						<img src="<%=card.poster_image %>" alt="" />
-					</div>
-					<div class="rate-stars">***** stars here</div>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title><%= card.title %></title>
+	<link rel="stylesheet" href="/stylesheets/global.css" />
+	<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
+	<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<body>
+	<div class="container">
+		
+		<div class="banner gradient-div">
+			<img src="<%=card.header_image %>" alt="" />
+		</div>
+		<div class="game-details">
+			<div class="gdetails-left gradient-div">
+				<div class="poster">
+					<img src="<%=card.poster_image %>" alt="" />
 				</div>
-				<div class="section gdetails-right gradient-div">
-					<div class="game-title-stats">
-						<div class="gradient-title">
-							<h1><%= card.title %></h1>
-						</div>
-						<div class="game-stats">
-							<p class="gradient-title">Developer:</p>
-							<p><%=card.developers %></p>
-							<br />
-							<p class="gradient-title">Release Date:</p>
-							<p><%=card.release_date %></p>
-							<br />
-							<% if (card.website){%>
-							<p class="gradient-title">Website:</p>
-							<a href="<%=card.website %>" target="_blank"
-								><p>
-									<%=card.website.replace(/(^\w+:|^)\/\//, '')
+				<div class="rate-stars">***** stars here</div>
+			</div>
+			<div class="section gdetails-right gradient-div">
+				<div class="game-title-stats">
+					<div class="gradient-title">
+						<h1><%= card.title %></h1>
+					</div>
+					<div class="game-stats">
+						<p class="gradient-title">Developer:</p>
+						<p><%=card.developers %></p>
+						<br />
+						<p class="gradient-title">Release Date:</p>
+						<p><%=card.release_date %></p>
+						<br />
+						<% if (card.website){%>
+						<p class="gradient-title">Website:</p>
+						<a href="<%=card.website %>" target="_blank">
+							<p>
+								<%=card.website.replace(/(^\w+:|^)\/\//, '')
 									%>
-								</p></a
-							>
-							<br />
+							</p>
+						</a>
+						<br />
+						<% } %>
+
+						<p class="gradient-title">Platforms:</p>
+						<div class="tags">
+							<!-- generate tags using for loop -->
+							<%for(let plt in card.platforms) {%>
+							<div class="tag">
+								<p><%=card.platforms[plt]%></p>
+							</div>
 							<% } %>
+						</div>
 
-							<p class="gradient-title">Platforms:</p>
-							<div class="tags">
-								<!-- generate tags using for loop -->
-								<%for(let plt in card.platforms) {%>
-								<div class="tag">
-									<p><%=card.platforms[plt]%></p>
-								</div>
-								<% } %>
+						<br />
+						<p class="gradient-title">Genres:</p>
+						<div class="tags">
+							<!-- generate tags using for loop -->
+							<%for(let gen in card.genres) {%>
+							<div class="tag">
+								<p><%=card.genres[gen]%></p>
 							</div>
-
-							<br />
-							<p class="gradient-title">Genres:</p>
-							<div class="tags">
-								<!-- generate tags using for loop -->
-								<%for(let gen in card.genres) {%>
-								<div class="tag">
-									<p><%=card.genres[gen]%></p>
-								</div>
-								<% } %>
-							</div>
+							<% } %>
 						</div>
 					</div>
-					<div class="game-score">
-						<div>
-							<p class="gradient-title">Metacritic Score</p>
-							<div class="score-circle">
-								<p>
-									<b><%=card.metacritic%></b><sub>/100</sub>
-								</p>
-							</div>
+				</div>
+				<div class="game-score">
+					<div>
+						<p class="gradient-title">Metacritic Score</p>
+						<div class="score-circle">
+							<p>
+								<b><%=card.metacritic%></b><sub>/100</sub>
+							</p>
 						</div>
-						<div>
-							<p class="gradient-title">User Score</p>
-							<div class="score-circle">
-								<p><b>90</b><sub>/100</sub></p>
-							</div>
+					</div>
+					<div>
+						<p class="gradient-title">User Score</p>
+						<div class="score-circle">
+							<p><b>90</b><sub>/100</sub></p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="section about gradient-div">
-				<div class="gradient-title">
-					<h2>About the game</h2>
-				</div>
-				<div class="game-desc">
-					<p><%-card.long_description %></p>
-				</div>
+		</div>
+		<div class="section about gradient-div">
+			<div class="gradient-title">
+				<h2>About the game</h2>
 			</div>
-			<div class="section screenshots gradient-div">
-				<div class="gradient-title">
-					<h2>Screenshots</h2>
-				</div>
+			<div class="game-desc">
+				<p><%-card.long_description %></p>
+			</div>
+		</div>
+		<div class="section screenshots gradient-div">
+			<div class="gradient-title">
+				<h2>Screenshots</h2>
+			</div>
 
-				<div class="screenshots-gallery">
-					<%for(let ss in card.screenshots) {%>
-					<img src="<%-card.screenshots[ss] %>" alt="" />
-					<% } %>
-					<!-- <img src="/assets/images/gta.jpg" alt="" />
+			<div class="screenshots-gallery">
+				<%for(let ss in card.screenshots) {%>
+				<img src="<%-card.screenshots[ss] %>" alt="" />
+				<% } %>
+				<!-- <img src="/assets/images/gta.jpg" alt="" />
 					<img src="/assets/images/gta.jpg" alt="" />
 					<img src="/assets/images/gta.jpg" alt="" />
 					<img src="/assets/images/gta.jpg" alt="" /> -->
-				</div>
 			</div>
-			<div class="section sys-req gradient-div">
-				<div class="gradient-title">
-					<h2>PC requirements</h2>
-				</div>
-				<div class="table-wrapper">
-					<table>
-						<tr>
-							<th><p>Minimum</p></th>
-							<th><p>Recommended</p></th>
-						</tr>
-
-						<tr>
-							<td><%-card.pc_requirements['minimum'] %></td>
-							<td><%-card.pc_requirements['recommended'] %></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<!-- to add: price section, comments section -->
-			<form
-				action="/games/<%=card._id%>/reviews"
-				method="POST"
-				class="mb-3 validated-form"
-			>
-				<div class="mb-3">
-					<label class="form-label" for="rating">Rating</label>
-					<input
-						class="form-range"
-						type="range"
-						min="1"
-						max="5"
-						name="review[rating]"
-						id="rating"
-						required
-					/>
-				</div>
-				<div class="mb-3">
-					<label class="form-label" for="body">Reviews</label>
-					<textarea
-						class="form-control"
-						name="review[body]"
-						id="body"
-						cols="30"
-						rows="1"
-						required
-					></textarea>
-				</div>
-				<button class="btn btn-success">Submit</button>
-			</form>
-			<% for(let review in card.reviews) { %>
-			<div class="mb-3">
-				<p>Rating: <%= review.rating %></p>
-				<p>Review: <%= review.body %></p>
-			</div>
-			<% } %>
 		</div>
-	</body>
+		<div class="section sys-req gradient-div">
+			<div class="gradient-title">
+				<h2>PC requirements</h2>
+			</div>
+			<div class="table-wrapper">
+				<table>
+					<tr>
+						<th>
+							<p>Minimum</p>
+						</th>
+						<th>
+							<p>Recommended</p>
+						</th>
+					</tr>
+
+					<tr>
+						<td><%-card.pc_requirements['minimum'] %></td>
+						<td><%-card.pc_requirements['recommended'] %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!-- to add: price section, comments section -->
+		<form action="/games/<%=card._id%>/comments" method="POST" class="mb-3 validated-form">
+			<div class="mb-3">
+				<label class="form-label" for="rating">Rating</label>
+				<inputclass="form-range"type="range" min="1" max="5" name="comment[rating]" id="rating" required />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="body">Reviews</label><br>
+				<textarea class="form-control" name="comment[body]" id="body" cols="30" rows="5" required></textarea>
+			</div>
+			<button class="btn btn-success">Submit</button>
+		</form>
+		<% for(let comment in card.comments) { %>
+		<div class="card mb-3">
+			<div class="card-body">
+				<h4 class="card-title">Rating: <%= comment.rating %></h4>
+				<p class="card-text">Review: <%= comment.body %></p>
+				<form action="/games/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+					<button class="btn btn-sm btn-danger">Delete</button>
+				</form>
+			</div>
+		</div>
+		<% } %>
+	</div>
+</body>
+
 </html>
