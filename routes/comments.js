@@ -8,7 +8,7 @@ const catchAsync = require("../utils/catchAsync");
 
 router.post("/",isLoggedIn,
 catchAsync(async (req, res, next) => {
-    //res.send(""+req.params.id);
+    console.log("comment posted")
     const card = await GameCard.findById(req.params.id);
     const comment = new Comment(req.body.comment);
     card.comments.push(comment);
@@ -16,8 +16,8 @@ catchAsync(async (req, res, next) => {
     await card.save();
     req.flash('success','Comment Added!');
     res.redirect(`/games/${card._id}`);
-    //console.log(card.comments);
-    //console.log(card.comments.body);
+    console.log(card.comments);
+    console.log(card.comments.body);
     //console.log(card.reviews.rating)
 })
 );

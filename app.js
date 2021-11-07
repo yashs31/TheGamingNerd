@@ -80,6 +80,7 @@ app.use("/games/:id/comments",commentsRoutes)
 app.get("/", function (req, res) {
 	res.render("homepage");
 });
+
 //-------------------------------------------------------------------------------------
 
 //ACTION
