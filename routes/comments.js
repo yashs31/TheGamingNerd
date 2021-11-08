@@ -5,6 +5,7 @@ const Comment = require("../models/review");
 const { isLoggedIn } = require("../middleware");
 const catchAsync = require("../utils/catchAsync");
 
+
 router.post(
 	"/",
 	isLoggedIn,
@@ -21,6 +22,21 @@ router.post(
 		//console.log(card.comments.body);
 		//console.log(card.reviews.rating)
 	})
+
+router.post("/",isLoggedIn,
+catchAsync(async (req, res, next) => {
+    console.log("comment posted")
+    const card = await GameCard.findById(req.params.id);
+    const comment = new Comment(req.body.comment);
+    card.comments.push(comment);
+    await comment.save();
+    await card.save();
+    req.flash('success','Comment Added!');
+    res.redirect(`/games/${card._id}`);
+    console.log(card.comments);
+    console.log(card.comments.body);
+    //console.log(card.reviews.rating)
+})
 );
 
 router.delete(

@@ -87,6 +87,7 @@ app.get("/", async function (req, res) {
 app.get("/developers", function (req, res) {
 	res.render("developers");
 });
+
 //-------------------------------------------------------------------------------------
 
 //ACTION

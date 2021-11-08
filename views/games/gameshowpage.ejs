@@ -212,7 +212,7 @@
 			</div>
 			<button class="btn btn-success">Submit</button>
 		</form>
-		<% for(let comment in card.comments) { %>
+		<% for(let comment of card.comments) { %>
 		<div class="card mb-3">
 			<div class="card-body">
 				<h4 class="card-title">Rating: <%= comment.rating %></h4>
