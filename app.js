@@ -7,7 +7,7 @@ const GameCard = require("./models/gamecard");
 const games = require("./seeds/games");
 const news = require("./seeds/news");
 const Comment = require("./models/review");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const passport = require("passport");
@@ -19,8 +19,6 @@ const userRoutes = require("./routes/users");
 const gamesRoutes = require("./routes/games");
 const commentsRoutes = require("./routes/comments");
 const newsRoutes = require("./routes/news");
-
-const steamDBurl = "https://store.steampowered.com/api/appdetails?appids=";
 
 mongoose.connect("mongodb://localhost/thegamingnerd", {
 	useNewUrlParser: true,

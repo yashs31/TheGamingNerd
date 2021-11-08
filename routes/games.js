@@ -27,9 +27,9 @@ router.get(
 			req.flash("error", "Cannot find that game");
 			res.redirect("/games");
 		}
-		console.log(card.comments);
-		console.log("-------------------------------");
-		console.log(card.comments.body);
+		// console.log(card.comments);
+		// console.log("-------------------------------");
+		// console.log(card.comments.body);
 		res.render("games/gameshowpage", { card });
 	})
 );
