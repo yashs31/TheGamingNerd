@@ -39,6 +39,7 @@ catchAsync(async (req, res, next) => {
 })
 );
 
+<<<<<<< Updated upstream
 router.delete(
 	"/:commentId",
 	isLoggedIn,
@@ -54,5 +55,16 @@ router.delete(
 		res.redirect(`/games/${id}`);
 	})
 );
+=======
+router.delete("/:commentId",isLoggedIn, catchAsync(async(req,res)=>{
+console.log("delete route hit");
+const {id,commentId}=req.params;
+await GameCard.findByIdAndUpdate(id,{$pull:{comments:commentId}});
+await Comment.findByIdAndDelete(commentId);
+req.flash('success','Deleted!');
+console.log("deleted");
+res.redirect(`/games/${id}`);
+}));
+>>>>>>> Stashed changes
 
 module.exports = router;
