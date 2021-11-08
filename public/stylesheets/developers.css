@@ -1,0 +1,15 @@
+
+.dev-info {
+	display: flex;
+    
+}
+
+/* .dev-info .left{
+    background-color: rgba(161, 161, 139, 0.253);
+} */
+
+.dev-info .right {
+	/* background-color: red; */
+	width: 100%;
+	padding: 10px 15px;
+}

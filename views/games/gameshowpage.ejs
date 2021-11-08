@@ -9,8 +9,9 @@
 	<link rel="stylesheet" href="/stylesheets/global.css" />
 	<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
 	<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<!-- This bootstrap is f**king up my css. Make sure to comment it after use :) -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> -->
 </head>
 
 <body>
@@ -18,6 +19,11 @@
 		
 		<div class="banner gradient-div">
 			<img src="<%=card.header_image %>" alt="" />
+			<a href="">
+				<div class="favourite gradient-div">
+					<p>Save as favourite</p> <img src="../assets/icons/heart.svg" alt="" >
+				</div>
+			</a>
 		</div>
 		<div class="game-details">
 			<div class="gdetails-left gradient-div">
@@ -112,11 +118,71 @@
 					<img src="/assets/images/gta.jpg" alt="" /> -->
 			</div>
 		</div>
+		<div class="section price gradient-div">
+			<div class="gradient-title">
+				<h2>Available on</h2>
+			</div>
+			<div class="store-gallery">
+				<% if(card.price['steam']) {%>
+				<div class="store">
+					<img src="../assets/icons/steam.svg" alt="">
+					<p>Steam<p>
+					<p><b>₹<%=card.price['steam']%></b></p>
+				</div>
+				<%}%>
+				<% if(card.price['epic']) {%>
+				<div class="store">
+					<img src="../assets/icons/epic.svg" alt="">
+					<p>Epic games<p>
+					<p><b>₹<%=card.price['epic']%></b></p>
+				</div>
+				<%}%>
+				<% if(card.price['gog']) {%>
+				<div class="store">
+					<img src="../assets/icons/gog.svg" alt="">
+					<p>GOG.com<p>
+					<p><b>₹<%=card.price['gog']%></b></p>
+				</div>
+				<%}%>
+				<% if(card.price['ubisoft']) {%>
+				<div class="store">
+					<img src="../assets/icons/ubisoft.svg" alt="">
+					<p>Ubisoft store<p>
+					<p><b>₹<%=card.price['ubisoft']%></b></p>
+				</div>
+				<%}%>
+				<% if(card.price['ms_store']) {%>
+				<div class="store">
+					<img src="../assets/icons/ms store.svg" alt="">
+					<p>Microsoft Store<p>
+					<p><b>₹<%=card.price['ms_store']%></b></p>
+				</div>
+				<%}%>
+				<% if(card.price['ps_store']) {%>
+				<div class="store">
+					<img src="../assets/icons/ps store.svg" alt="">
+					<p>PlayStation store<p>
+					<p><b>₹<%=card.price['ps_store']%></b></p>
+				</div>
+				<%}%>
+
+			</div>
+		</div>
 		<div class="section sys-req gradient-div">
 			<div class="gradient-title">
 				<h2>PC requirements</h2>
 			</div>
-			<div class="table-wrapper">
+			<div class="req-wrapper">
+				<div class="minimum">
+					<p><b>Minimum</b></p>
+					<%-card.pc_requirements['minimum'] %>
+				</div>
+				<div class="recommended">
+					<p><b>Recommended</b></p>
+					<%-card.pc_requirements['recommended'] %>
+				</div>
+			</div>
+			<!-- <div class="table-wrapper">
 				<table>
 					<tr>
 						<th>
@@ -132,8 +198,8 @@
 						<td><%-card.pc_requirements['recommended'] %></td>
 					</tr>
 				</table>
-			</div>
-		</div>
+			</div>-->
+		</div> 
 		<!-- to add: price section, comments section -->
 		<form action="/games/<%=card._id%>/comments" method="POST" class="mb-3 validated-form">
 			<div class="mb-3">
@@ -157,6 +223,20 @@
 			</div>
 		</div>
 		<% } %>
+		<footer>
+			<div class="logo">
+				<a href="/"
+					><img src="../assets/logo/logo-gradient.svg" alt=""
+				/></a>
+			</div>
+			<div class="footline">
+				<p>
+					Made with <img src="../assets/icons/heart.svg" alt="" />
+					<a href="/developers">by gamers,&nbsp;</a>
+					for gamers
+				</p>
+			</div>
+		</footer>
 	</div>
 </body>
 

@@ -18,6 +18,7 @@ const GameCardSchema = new Schema({
 	metacritic: Number,
 	screenshots: [String],
 	release_date: String,
+	price: Object,
 	comments: [
 		{
 			type: Schema.Types.ObjectId,
