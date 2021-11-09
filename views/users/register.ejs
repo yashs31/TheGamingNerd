@@ -1,36 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Register</title>
+		<link rel="stylesheet" href="stylesheets/global.css" />
+		<link rel="stylesheet" href="stylesheets/formpage.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="gradient-title">
+				<h1>Register</h1>
+			</div>
+			<%- include("../partials/flash") %>
+			<form action="/register" method="POST" class="login">
+				<label for="username"><p>Username</p></label>
+				<input
+					type="text"
+					id="username"
+					name="username"
+					required
+					size="100"
+				/>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>REgistration</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-</head>
+				<label for="email"><p>Email</p></label>
+				<input type="email" id="email" name="email" required />
 
-<body>
-    
-    <div class="container">
-        <h1>Register</h1>
-        <%- include("../partials/flash") %>
-        <form action="/register" method="POST" class="validated-form">
-            <div class="mb-3">
-                <label class="form-label" for="username">Username</label>
-                <input class="form-control" type="text" id="username" name="username" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="email">Email</label>
-                <input class="form-control" type="email" id="email" name="email" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="password">Password</label>
-                <input class="form-control" type="password" id="password" name="password" required>
-            </div>
-            <button class="btn btn-success">Register</button>
-        </form>
-    </div>
-</body>
+				<label for="password"><p>Password</p></label>
+				<input type="password" id="password" name="password" required />
 
+				<button><p>Register</p></button>
+			</form>
+            <footer>
+				<div class="logo">
+					<a href="/"
+						><img src="assets/logo/logo-gradient.svg" alt=""
+					/></a>
+				</div>
+				<div class="footline">
+					<p>
+						Made with <img src="assets/icons/heart.svg" alt="" />
+						<a href="/developers">by gamers,&nbsp;</a>
+						for gamers
+					</p>
+				</div>
+			</footer>
+		</div>
+	</body>
 </html>

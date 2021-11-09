@@ -19,8 +19,11 @@ router.post(
 				if (err) {
 					return next(err);
 				}
-				req.flash("success", "Welcome");
-				res.redirect("/");
+				req.flash("success", "Welcome <username here>!");
+				req.session.returnTo=req.session.returnTo || "/";
+				// delete req.session.returnTo;
+				console.log("register:"+req.session.returnTo);
+				res.redirect(req.session.returnTo);
 			});
 		} catch (e) {
 			req.flash("error", e.message);
@@ -42,16 +45,19 @@ router.post(
 	}),
 	(req, res) => {
 		//console.log(user);
-		req.flash("success", "Welcome back!");
-		//const redirectUrl=req.session.returnTo || "/";
-		delete req.session.returnTo;
-		res.redirect("/");
+		req.flash("success", "Welcome back <username here>!");
+		req.session.returnTo=req.session.returnTo || "/";
+		// delete req.session.returnTo;
+		console.log("login:"+req.session.returnTo);
+		res.redirect(req.session.returnTo);
 	}
 );
 
 router.get("/logout", (req, res) => {
 	req.logout();
 	//req.flash("success","Adios");
-	res.redirect("/");
+	req.session.returnTo = '/';
+	console.log("logout:"+req.session.returnTo);
+	res.redirect(req.session.returnTo);
 });
 module.exports = router;

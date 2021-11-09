@@ -182,25 +182,9 @@
 					<%-card.pc_requirements['recommended'] %>
 				</div>
 			</div>
-			<!-- <div class="table-wrapper">
-				<table>
-					<tr>
-						<th>
-							<p>Minimum</p>
-						</th>
-						<th>
-							<p>Recommended</p>
-						</th>
-					</tr>
-
-					<tr>
-						<td><%-card.pc_requirements['minimum'] %></td>
-						<td><%-card.pc_requirements['recommended'] %></td>
-					</tr>
-				</table>
-			</div>-->
+			
 		</div> 
-		<!-- to add: price section, comments section -->
+		
 		<form action="/games/<%=card._id%>/comments" method="POST" class="mb-3 validated-form">
 			<div class="mb-3">
 				<label class="form-label" for="rating">Rating</label>
@@ -217,9 +201,13 @@
 			<div class="card-body">
 				<h4 class="card-title">Rating: <%= comment.rating %></h4>
 				<p class="card-text">Review: <%= comment.body %></p>
-				<form action="/games/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-					<button class="btn btn-sm btn-danger">Delete</button>
-				</form>
+				<% if(currentUser) {%>
+					<form action="/games/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+						<button class="btn btn-sm btn-danger">Delete</button>
+					</form>
+					<% } %>
+					
+				
 			</div>
 		</div>
 		<% } %>

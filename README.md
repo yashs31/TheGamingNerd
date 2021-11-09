@@ -29,11 +29,12 @@ Backend:
 ### TODO
 
 -   [ ] dynamic routes from the home page based on categories eg. /genres/dynamic_category
--   [ ] add price key in gamecard schema
--   [ ] login and signup
+-   [x] add price key in gamecard schema
+-   [x] login and signup
 -   [ ] admin console
 -   [ ] add all game data
--   [ ] add news/articles and giveawas section
+-   [x] add news/articles and giveawas section
+-   [ ] add giveawas section
 -   [ ] star ratings
 -   [ ] search functionality
 -   [ ] mark as favourites (saved games will be shown in user profile)

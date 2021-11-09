@@ -76,6 +76,9 @@ img {
 	margin: auto;
 	padding: 20px;
 	/* background-color: red; */
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 .gradient-title {
@@ -179,16 +182,13 @@ button {
 	border-radius: var(--border-radius);
 }
 
-::-webkit-resize {
-	background-color: red;
-}
-
 
 footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px 0;
+	margin-top: auto;
 }
 
 footer p {
