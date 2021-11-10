@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true }); //routers dont actually have excess to params so explicitly giv access with mergeParams
 const GameCard = require("../models/gamecard");
 const Comment = require("../models/review");
-const { isLoggedIn } = require("../middleware");
+const { isLoggedIn, isReviewAuthor } = require("../middleware");
 const catchAsync = require("../utils/catchAsync");
 
 
@@ -10,6 +10,7 @@ router.post("/",isLoggedIn, catchAsync(async (req, res, next) => {
     console.log("comment posted")
     const card = await GameCard.findById(req.params.id);
     const comment = new Comment(req.body.comment);
+    comment.author=req.user._id;
     card.comments.push(comment);
     await comment.save();
     await card.save();
@@ -20,8 +21,8 @@ router.post("/",isLoggedIn, catchAsync(async (req, res, next) => {
     //console.log(card.reviews.rating)
 }));
 
-router.post("/:commentId",isLoggedIn, catchAsync(async(req,res)=>{
-	console.log("delete route hit");
+router.post("/:commentId",isLoggedIn,isReviewAuthor, catchAsync(async(req,res)=>{
+	//console.log("delete route hit");
 	const {id,commentId}=req.params;
 	await GameCard.findByIdAndUpdate(id,{$pull:{comments:commentId}});
 	await Comment.findByIdAndDelete(commentId);

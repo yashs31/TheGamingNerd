@@ -20,14 +20,17 @@ router.get(
 router.get(
 	"/:id",
 	catchAsync(async (req, res) => {
-		const card = await GameCard.findById(req.params.id).populate(
-			"comments"
-		);
+		const card = await GameCard.findById(req.params.id).populate({
+			path:"comments",
+			populate:{
+				path:"author"
+			}
+		});
 		if (!card) {
 			req.flash("error", "Cannot find that game");
 			res.redirect("/games");
 		}
-		// console.log(card.comments);
+		 console.log(card);
 		// console.log("-------------------------------");
 		// console.log(card.comments.body);
 		res.render("games/gameshowpage", { card });

@@ -10,18 +10,18 @@
 	<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
 	<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
 	<!-- This bootstrap is f**king up my css. Make sure to comment it after use :) -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 </head>
 
 <body>
 	<div class="container">
-		
+		<%- include("../partials/flash") %>
 		<div class="banner gradient-div">
 			<img src="<%=card.header_image %>" alt="" />
 			<a href="">
 				<div class="favourite gradient-div">
-					<p>Save as favourite</p> <img src="../assets/icons/heart.svg" alt="" >
+					<p>Save as favourite</p> <img src="../assets/icons/heart.svg" alt="">
 				</div>
 			</a>
 		</div>
@@ -127,42 +127,42 @@
 				<div class="store">
 					<img src="../assets/icons/steam.svg" alt="">
 					<p>Steam<p>
-					<p><b>₹<%=card.price['steam']%></b></p>
+							<p><b>₹<%=card.price['steam']%></b></p>
 				</div>
 				<%}%>
 				<% if(card.price['epic']) {%>
 				<div class="store">
 					<img src="../assets/icons/epic.svg" alt="">
 					<p>Epic games<p>
-					<p><b>₹<%=card.price['epic']%></b></p>
+							<p><b>₹<%=card.price['epic']%></b></p>
 				</div>
 				<%}%>
 				<% if(card.price['gog']) {%>
 				<div class="store">
 					<img src="../assets/icons/gog.svg" alt="">
 					<p>GOG.com<p>
-					<p><b>₹<%=card.price['gog']%></b></p>
+							<p><b>₹<%=card.price['gog']%></b></p>
 				</div>
 				<%}%>
 				<% if(card.price['ubisoft']) {%>
 				<div class="store">
 					<img src="../assets/icons/ubisoft.svg" alt="">
 					<p>Ubisoft store<p>
-					<p><b>₹<%=card.price['ubisoft']%></b></p>
+							<p><b>₹<%=card.price['ubisoft']%></b></p>
 				</div>
 				<%}%>
 				<% if(card.price['ms_store']) {%>
 				<div class="store">
 					<img src="../assets/icons/ms store.svg" alt="">
 					<p>Microsoft Store<p>
-					<p><b>₹<%=card.price['ms_store']%></b></p>
+							<p><b>₹<%=card.price['ms_store']%></b></p>
 				</div>
 				<%}%>
 				<% if(card.price['ps_store']) {%>
 				<div class="store">
 					<img src="../assets/icons/ps store.svg" alt="">
 					<p>PlayStation store<p>
-					<p><b>₹<%=card.price['ps_store']%></b></p>
+							<p><b>₹<%=card.price['ps_store']%></b></p>
 				</div>
 				<%}%>
 
@@ -176,55 +176,53 @@
 				<div class="minimum">
 					<p><b>Minimum</b></p>
 					<%-card.pc_requirements['minimum'] %>
-				</div>
-				<div class="recommended">
-					<p><b>Recommended</b></p>
-					<%-card.pc_requirements['recommended'] %>
-				</div>
 			</div>
-			
-		</div> 
-		
-		<form action="/games/<%=card._id%>/comments" method="POST" class="mb-3 validated-form">
-			<div class="mb-3">
-				<label class="form-label" for="rating">Rating</label>
-				<inputclass="form-range"type="range" min="1" max="5" name="comment[rating]" id="rating" required />
-			</div>
-			<div class="mb-3">
-				<label class="form-label" for="body">Reviews</label><br>
-				<textarea class="form-control" name="comment[body]" id="body" cols="30" rows="5" required></textarea>
-			</div>
-			<button class="btn btn-success">Submit</button>
-		</form>
-		<% for(let comment of card.comments) { %>
-		<div class="card mb-3">
-			<div class="card-body">
-				<h4 class="card-title">Rating: <%= comment.rating %></h4>
-				<p class="card-text">Review: <%= comment.body %></p>
-				<% if(currentUser) {%>
-					<form action="/games/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-						<button class="btn btn-sm btn-danger">Delete</button>
-					</form>
-					<% } %>
-					
-				
+			<div class="recommended">
+				<p><b>Recommended</b></p>
+				<%-card.pc_requirements['recommended'] %>
 			</div>
 		</div>
-		<% } %>
-		<footer>
-			<div class="logo">
-				<a href="/"
-					><img src="../assets/logo/logo-gradient.svg" alt=""
-				/></a>
-			</div>
-			<div class="footline">
-				<p>
-					Made with <img src="../assets/icons/heart.svg" alt="" />
-					<a href="/developers">by gamers,&nbsp;</a>
-					for gamers
-				</p>
-			</div>
-		</footer>
+
+	</div>
+	<% if(currentUser){ %>
+	<form action="/games/<%=card._id%>/comments" method="POST" class="mb-3 validated-form">
+		<div class="mb-3">
+			<label class="form-label" for="rating">Rating</label>
+			<input class="form-range" type="range" min="1" max="5" name="comment[rating]" id="rating" required />
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="body">Reviews</label><br>
+			<textarea class="form-control" name="comment[body]" id="body" cols="30" rows="5" required></textarea>
+		</div>
+		<button class="btn btn-success">Submit</button>
+	</form>
+	<% } %>
+	<% for(let comment of card.comments) { %>
+	<div class="card mb-3">
+		<div class="card-body">
+			<h4 class="card-title">Rating: <%= comment.rating %></h4>
+			<h6 class="card-subtitle mb-2 text-muted">by <%=comment.author.username %></h6>
+			<p class="card-text">Review: <%= comment.body %></p>
+			<% if(currentUser && comment.author.equals(currentUser)) { %>
+			<form action="/games/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+				<button class="btn btn-sm btn-danger">Delete</button>
+			</form>
+			<% } %>
+		</div>
+	</div>
+	<% } %>
+	<footer>
+		<div class="logo">
+			<a href="/"><img src="../assets/logo/logo-gradient.svg" alt="" /></a>
+		</div>
+		<div class="footline">
+			<p>
+				Made with <img src="../assets/icons/heart.svg" alt="" />
+				<a href="/developers">by gamers,&nbsp;</a>
+				for gamers
+			</p>
+		</div>
+	</footer>
 	</div>
 </body>
 

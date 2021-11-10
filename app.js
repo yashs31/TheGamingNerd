@@ -189,8 +189,8 @@ const seedNews = async () => {
 
 app.listen(3000, () => {
 	console.log("Serving on port 3000");
-	// seedGames();
-	// seedNews();
+	seedGames();
+	seedNews();
 	console.log("Total games = " + games.length);
 	console.log("Total news = " + news.length);
 });
