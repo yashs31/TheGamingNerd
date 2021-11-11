@@ -1,229 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= card.title %></title>
+		<link rel="stylesheet" href="/stylesheets/global.css" />
+		<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
+		<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title><%= card.title %></title>
-	<link rel="stylesheet" href="/stylesheets/global.css" />
-	<link rel="stylesheet" href="/stylesheets/gameshowpage.css" />
-	<link rel="stylesheet" href="/stylesheets/mediaquery.css" />
-	<!-- This bootstrap is f**king up my css. Make sure to comment it after use :) -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-</head>
+		<!-- This bootstrap is f**king up my css. Make sure to comment it after use :) -->
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> -->
+	</head>
 
-<body>
-	<div class="container">
-		<%- include("../partials/flash") %>
-		<div class="banner gradient-div">
-			<img src="<%=card.header_image %>" alt="" />
-			<a href="">
-				<div class="favourite gradient-div">
-					<p>Save as favourite</p> <img src="../assets/icons/heart.svg" alt="">
-				</div>
-			</a>
-		</div>
-		<div class="game-details">
-			<div class="gdetails-left gradient-div">
-				<div class="poster">
-					<img src="<%=card.poster_image %>" alt="" />
-				</div>
-				<div class="rate-stars">***** stars here</div>
-			</div>
-			<div class="section gdetails-right gradient-div">
-				<div class="game-title-stats">
-					<div class="gradient-title">
-						<h1><%= card.title %></h1>
+	<body>
+		<div class="container">
+			<%- include("../partials/flash") %>
+			<div class="banner gradient-div">
+				<img src="<%=card.header_image %>" alt="" />
+				<a href="">
+					<div class="favourite gradient-div">
+						<p>Save as favourite</p>
+						<img src="../assets/icons/heart.svg" alt="" />
 					</div>
-					<div class="game-stats">
-						<p class="gradient-title">Developer:</p>
-						<p><%=card.developers %></p>
-						<br />
-						<p class="gradient-title">Release Date:</p>
-						<p><%=card.release_date %></p>
-						<br />
-						<% if (card.website){%>
-						<p class="gradient-title">Website:</p>
-						<a href="<%=card.website %>" target="_blank">
-							<p>
-								<%=card.website.replace(/(^\w+:|^)\/\//, '')
+				</a>
+			</div>
+			<div class="game-details">
+				<div class="gdetails-left gradient-div">
+					<div class="poster">
+						<img src="<%=card.poster_image %>" alt="" />
+					</div>
+					<div class="rate-stars">***** stars here</div>
+				</div>
+				<div class="section gdetails-right gradient-div">
+					<div class="game-title-stats">
+						<div class="gradient-title">
+							<h1><%= card.title %></h1>
+						</div>
+						<div class="game-stats">
+							<p class="gradient-title">Developer:</p>
+							<p><%=card.developers %></p>
+							<br />
+							<p class="gradient-title">Release Date:</p>
+							<p><%=card.release_date %></p>
+							<br />
+							<% if (card.website){%>
+							<p class="gradient-title">Website:</p>
+							<a href="<%=card.website %>" target="_blank">
+								<p>
+									<%=card.website.replace(/(^\w+:|^)\/\//, '')
 									%>
-							</p>
-						</a>
-						<br />
-						<% } %>
-
-						<p class="gradient-title">Platforms:</p>
-						<div class="tags">
-							<!-- generate tags using for loop -->
-							<%for(let plt in card.platforms) {%>
-							<div class="tag">
-								<p><%=card.platforms[plt]%></p>
-							</div>
+								</p>
+							</a>
+							<br />
 							<% } %>
+
+							<p class="gradient-title">Platforms:</p>
+							<div class="tags">
+								<!-- generate tags using for loop -->
+								<%for(let plt in card.platforms) {%>
+								<div class="tag">
+									<p><%=card.platforms[plt]%></p>
+								</div>
+								<% } %>
+							</div>
+
+							<br />
+							<p class="gradient-title">Genres:</p>
+							<div class="tags">
+								<!-- generate tags using for loop -->
+								<%for(let gen in card.genres) {%>
+								<div class="tag">
+									<p><%=card.genres[gen]%></p>
+								</div>
+								<% } %>
+							</div>
 						</div>
-
-						<br />
-						<p class="gradient-title">Genres:</p>
-						<div class="tags">
-							<!-- generate tags using for loop -->
-							<%for(let gen in card.genres) {%>
-							<div class="tag">
-								<p><%=card.genres[gen]%></p>
+					</div>
+					<div class="game-score">
+						<div>
+							<p class="gradient-title">Metacritic Score</p>
+							<div class="score-circle">
+								<p>
+									<b><%=card.metacritic%></b><sub>/100</sub>
+								</p>
 							</div>
-							<% } %>
+						</div>
+						<div>
+							<p class="gradient-title">User Score</p>
+							<div class="score-circle">
+								<p><b>90</b><sub>/100</sub></p>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="game-score">
-					<div>
-						<p class="gradient-title">Metacritic Score</p>
-						<div class="score-circle">
-							<p>
-								<b><%=card.metacritic%></b><sub>/100</sub>
-							</p>
-						</div>
-					</div>
-					<div>
-						<p class="gradient-title">User Score</p>
-						<div class="score-circle">
-							<p><b>90</b><sub>/100</sub></p>
-						</div>
-					</div>
+			</div>
+			<div class="section about gradient-div">
+				<div class="gradient-title">
+					<h2>About the game</h2>
+				</div>
+				<div class="game-desc">
+					<p><%-card.long_description %></p>
 				</div>
 			</div>
-		</div>
-		<div class="section about gradient-div">
-			<div class="gradient-title">
-				<h2>About the game</h2>
-			</div>
-			<div class="game-desc">
-				<p><%-card.long_description %></p>
-			</div>
-		</div>
-		<div class="section screenshots gradient-div">
-			<div class="gradient-title">
-				<h2>Screenshots</h2>
-			</div>
+			<div class="section screenshots gradient-div">
+				<div class="gradient-title">
+					<h2>Screenshots</h2>
+				</div>
 
-			<div class="screenshots-gallery">
-				<%for(let ss in card.screenshots) {%>
-				<img src="<%-card.screenshots[ss] %>" alt="" />
-				<% } %>
-				<!-- <img src="/assets/images/gta.jpg" alt="" />
+				<div class="screenshots-gallery">
+					<%for(let ss in card.screenshots) {%>
+					<img src="<%-card.screenshots[ss] %>" alt="" />
+					<% } %>
+					<!-- <img src="/assets/images/gta.jpg" alt="" />
 					<img src="/assets/images/gta.jpg" alt="" />
 					<img src="/assets/images/gta.jpg" alt="" />
 					<img src="/assets/images/gta.jpg" alt="" /> -->
+				</div>
 			</div>
-		</div>
-		<div class="section price gradient-div">
-			<div class="gradient-title">
-				<h2>Available on</h2>
+			<div class="section price gradient-div">
+				<div class="gradient-title">
+					<h2>Available on</h2>
+				</div>
+				<div class="store-gallery">
+					<% if(card.price['steam']) {%>
+					<div class="store">
+						<img src="../assets/icons/steam.svg" alt="" />
+						<p>Steam</p>
+						<p></p>
+						<p><b>₹<%=card.price['steam']%></b></p>
+					</div>
+					<%}%> <% if(card.price['epic']) {%>
+					<div class="store">
+						<img src="../assets/icons/epic.svg" alt="" />
+						<p>Epic games</p>
+						<p></p>
+						<p><b>₹<%=card.price['epic']%></b></p>
+					</div>
+					<%}%> <% if(card.price['gog']) {%>
+					<div class="store">
+						<img src="../assets/icons/gog.svg" alt="" />
+						<p>GOG.com</p>
+						<p></p>
+						<p><b>₹<%=card.price['gog']%></b></p>
+					</div>
+					<%}%> <% if(card.price['ubisoft']) {%>
+					<div class="store">
+						<img src="../assets/icons/ubisoft.svg" alt="" />
+						<p>Ubisoft store</p>
+						<p></p>
+						<p><b>₹<%=card.price['ubisoft']%></b></p>
+					</div>
+					<%}%> <% if(card.price['ms_store']) {%>
+					<div class="store">
+						<img src="../assets/icons/ms store.svg" alt="" />
+						<p>Microsoft Store</p>
+						<p></p>
+						<p><b>₹<%=card.price['ms_store']%></b></p>
+					</div>
+					<%}%> <% if(card.price['ps_store']) {%>
+					<div class="store">
+						<img src="../assets/icons/ps store.svg" alt="" />
+						<p>PlayStation store</p>
+						<p></p>
+						<p><b>₹<%=card.price['ps_store']%></b></p>
+					</div>
+					<%}%>
+				</div>
 			</div>
-			<div class="store-gallery">
-				<% if(card.price['steam']) {%>
-				<div class="store">
-					<img src="../assets/icons/steam.svg" alt="">
-					<p>Steam<p>
-							<p><b>₹<%=card.price['steam']%></b></p>
+			<div class="section sys-req gradient-div">
+				<div class="gradient-title">
+					<h2>PC requirements</h2>
 				</div>
-				<%}%>
-				<% if(card.price['epic']) {%>
-				<div class="store">
-					<img src="../assets/icons/epic.svg" alt="">
-					<p>Epic games<p>
-							<p><b>₹<%=card.price['epic']%></b></p>
+				<div class="req-wrapper">
+					<div class="minimum">
+						<p><b>Minimum</b></p>
+						<%-card.pc_requirements['minimum'] %>
+					</div>
+					<div class="recommended">
+						<p><b>Recommended</b></p>
+						<%-card.pc_requirements['recommended'] %>
+					</div>
 				</div>
-				<%}%>
-				<% if(card.price['gog']) {%>
-				<div class="store">
-					<img src="../assets/icons/gog.svg" alt="">
-					<p>GOG.com<p>
-							<p><b>₹<%=card.price['gog']%></b></p>
+			</div>
+			<div class="section comments gradient-div">
+				<div class="gradient-title">
+					<h2>Ratings & Comments</h2>
 				</div>
-				<%}%>
-				<% if(card.price['ubisoft']) {%>
-				<div class="store">
-					<img src="../assets/icons/ubisoft.svg" alt="">
-					<p>Ubisoft store<p>
-							<p><b>₹<%=card.price['ubisoft']%></b></p>
+				<div class="comments-form">
+					<!-- I will re-edit this form layout properly at the end -->
+					<% if(currentUser){ %>
+					<form action="/games/<%=card._id%>/comments" method="POST">
+						<div class="rating">
+							<label for="rating"><p>Rating</p></label>
+							<input
+								type="range"
+								min="1"
+								max="5"
+								name="comment[rating]"
+								id="rating"
+								required
+							/>
+						</div>
+						<div class="review">
+							<label for="review"><p>Comment</p></label><br />
+							<textarea
+								name="comment[body]"
+								id="review"
+								cols="30"
+								rows="5"
+								required
+							></textarea>
+						</div>
+						<button><p>Post</p></button>
+					</form>
+					<% } %> <% for(let comment of card.comments) { %>
+					<div class="divider"></div>
+					<div class="comment-card">
+						<div class="rating">
+							<p>
+								Rating: <%= comment.rating %> stars will come
+								here <br /><sup
+									>by <%=comment.author.username %></sup
+								>
+							</p>
+							<div class="delete-btn">
+								<% if(currentUser &&
+								comment.author.equals(currentUser)) { %>
+								<form
+									action="/games/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE"
+									method="POST"
+								>
+									<button class="btn btn-sm btn-danger">
+										<p>Delete</p>
+									</button>
+								</form>
+								<% } %>
+							</div>
+						</div>
+						<div class="comment-body">
+							<p>
+								Review: <br />
+								<%= comment.body %>
+							</p>
+						</div>
+					</div>
+					<% } %>
 				</div>
-				<%}%>
-				<% if(card.price['ms_store']) {%>
-				<div class="store">
-					<img src="../assets/icons/ms store.svg" alt="">
-					<p>Microsoft Store<p>
-							<p><b>₹<%=card.price['ms_store']%></b></p>
-				</div>
-				<%}%>
-				<% if(card.price['ps_store']) {%>
-				<div class="store">
-					<img src="../assets/icons/ps store.svg" alt="">
-					<p>PlayStation store<p>
-							<p><b>₹<%=card.price['ps_store']%></b></p>
-				</div>
-				<%}%>
+			</div>
 
-			</div>
+			<footer>
+				<div class="logo">
+					<a href="/"
+						><img src="../assets/logo/logo-gradient.svg" alt=""
+					/></a>
+				</div>
+				<div class="footline">
+					<p>
+						Made with <img src="../assets/icons/heart.svg" alt="" />
+						<a href="/developers">by gamers,&nbsp;</a>
+						for gamers
+					</p>
+				</div>
+			</footer>
 		</div>
-		<div class="section sys-req gradient-div">
-			<div class="gradient-title">
-				<h2>PC requirements</h2>
-			</div>
-			<div class="req-wrapper">
-				<div class="minimum">
-					<p><b>Minimum</b></p>
-					<%-card.pc_requirements['minimum'] %>
-			</div>
-			<div class="recommended">
-				<p><b>Recommended</b></p>
-				<%-card.pc_requirements['recommended'] %>
-			</div>
-		</div>
-
-	</div>
-	<% if(currentUser){ %>
-	<form action="/games/<%=card._id%>/comments" method="POST" class="mb-3 validated-form">
-		<div class="mb-3">
-			<label class="form-label" for="rating">Rating</label>
-			<input class="form-range" type="range" min="1" max="5" name="comment[rating]" id="rating" required />
-		</div>
-		<div class="mb-3">
-			<label class="form-label" for="body">Reviews</label><br>
-			<textarea class="form-control" name="comment[body]" id="body" cols="30" rows="5" required></textarea>
-		</div>
-		<button class="btn btn-success">Submit</button>
-	</form>
-	<% } %>
-	<% for(let comment of card.comments) { %>
-	<div class="card mb-3">
-		<div class="card-body">
-			<h4 class="card-title">Rating: <%= comment.rating %></h4>
-			<h6 class="card-subtitle mb-2 text-muted">by <%=comment.author.username %></h6>
-			<p class="card-text">Review: <%= comment.body %></p>
-			<% if(currentUser && comment.author.equals(currentUser)) { %>
-			<form action="/games/<%=card._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-				<button class="btn btn-sm btn-danger">Delete</button>
-			</form>
-			<% } %>
-		</div>
-	</div>
-	<% } %>
-	<footer>
-		<div class="logo">
-			<a href="/"><img src="../assets/logo/logo-gradient.svg" alt="" /></a>
-		</div>
-		<div class="footline">
-			<p>
-				Made with <img src="../assets/icons/heart.svg" alt="" />
-				<a href="/developers">by gamers,&nbsp;</a>
-				for gamers
-			</p>
-		</div>
-	</footer>
-	</div>
-</body>
-
+	</body>
 </html>

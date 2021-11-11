@@ -72,6 +72,10 @@
 	.news-info > div p {
 		width: auto;
 	}
+	.header-left {
+		margin: auto;
+		flex-grow: 0;
+	}
 }
 
 @media (max-width: 648px) {

@@ -1,10 +1,14 @@
-img {
-	object-position: top;
+.container {
+	display: inherit;
 }
 
-body {
+/* img {
+	object-position: top;
+} */
+
+/* body {
 	background-color: black;
-}
+} */
 
 .banner {
 	aspect-ratio: 16/4.8;
@@ -32,7 +36,6 @@ body {
 
 .favourite img {
 	width: 45px;
-	/* margin-left: 10px; */
 }
 
 .favourite p {
@@ -42,8 +45,8 @@ body {
 .game-details {
 	width: 100%;
 	display: flex;
-	flex-wrap: wrap;
-	margin-bottom: 20px;
+	/* flex-wrap: wrap; */
+	/* margin-bottom: 20px; */
 	align-items: flex-end;
 }
 .gdetails-left {
@@ -161,4 +164,19 @@ body {
 	height: auto;
 	width: auto;
 	margin: auto;
+}
+
+form button {
+	background: var(--title-text-gradient);
+	margin-top: 10px;
+}
+
+form button p {
+	color: var(--fallback-color);
+}
+
+.comment-card .rating {
+	/* background-color: #fff; */
+	display: flex;
+	justify-content: space-between;
 }

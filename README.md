@@ -24,6 +24,8 @@ Backend:
 ![](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 ![](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
+---
+
 > Currently in development
 
 ### TODO
@@ -31,9 +33,11 @@ Backend:
 -   [ ] dynamic routes from the home page based on categories eg. /genres/dynamic_category
 -   [x] add price key in gamecard schema
 -   [x] login and signup
+-   [x] ratings and comments
 -   [ ] admin console
+-   [ ] user profile page
 -   [ ] add all game data
--   [x] add news/articles and giveawas section
+-   [x] add news/articles
 -   [ ] add giveawas section
 -   [ ] star ratings
 -   [ ] search functionality

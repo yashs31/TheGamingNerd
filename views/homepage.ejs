@@ -13,22 +13,50 @@
 	<body>
 		<div class="container">
 			<header>
-				<div class="logo">
-					<img src="assets/logo/logo-gradient.svg" alt="" />
-				</div>
-				<div class="logo-text gradient-title">
-					<h1>The Gaming Nerd</h1>
+				<div class="header-left">
+					<div class="logo">
+						<img src="assets/logo/logo-gradient.svg" alt="" />
+					</div>
+					<div class="logo-text gradient-title">
+						<h1>The Gaming Nerd</h1>
+					</div>
 				</div>
 				<div class="header-right">
 					<!-- to add: login, signup, search bar -->
-					<% if(!currentUser) {%>
+					<div class="login-search">
+						<% if(!currentUser) {%>
+						<a href="/login">
+							<div class="login">
+								<p>Login</p>
+								<img src="assets/icons/login.svg" alt="" />
+							</div>
+						</a>
+						<% } else {%>
+						<!-- once user profile page is done, logout here will replaced by username and link to user profile. Logout link will be added inside the user profile page -->
+						<a href="/logout">
+							<div class="login">
+								<p>Logout</p>
+								<img src="assets/icons/logout.svg" alt="" />
+							</div>
+						</a>
+						<% } %>
+						<form>
+							<div class="search">
+								<input type="search" class="gradient-div" />
+								<button class="gradient-div">
+									<img src="assets/icons/search.svg" alt="" />
+								</button>
+							</div>
+						</form>
+					</div>
+					<!-- <% if(!currentUser) {%>
 					<a href="/login" style="background-color: red">Login</a>
 					<a href="/register" style="background-color: green"
 						>Sign-up</a
 					>
 					<% } else {%>
 					<a href="/logout" style="background-color: red">Logout</a>
-					<% } %> search bar here
+					<% } %> search bar here -->
 				</div>
 			</header>
 
