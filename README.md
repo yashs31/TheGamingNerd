@@ -6,9 +6,9 @@ A mini-project to learn web developement and technologies.
 
 ## Collaborators:
 
--   Yash Savoicar ([@yashs31](https://github.com/yashs31))
--   Sourabh Sathe ([@sourhub226](https://github.com/sourhub226))
--   Yash Naik ([@ZPhantomlord123](https://github.com/ZPhantomlord123))
+- Yash Savoicar ([@yashs31](https://github.com/yashs31))
+- Sourabh Sathe ([@sourhub226](https://github.com/sourhub226))
+- Yash Naik ([@ZPhantomlord123](https://github.com/ZPhantomlord123))
 
 ## Tech Stack:
 
@@ -26,19 +26,17 @@ Backend:
 
 ---
 
-> Currently in development
-
 ### TODO
 
--   [ ] dynamic routes from the home page based on categories eg. /genres/dynamic_category
--   [x] add price key in gamecard schema
--   [x] login and signup
--   [x] ratings and comments
--   [ ] admin console
--   [ ] user profile page
--   [ ] add all game data
--   [x] add news/articles
--   [ ] add giveawas section
--   [ ] star ratings
--   [ ] search functionality
--   [ ] mark as favourites (saved games will be shown in user profile)
+- [ ] dynamic routes from the home page based on categories eg. /genres/dynamic_category
+- [x] add price key in gamecard schema
+- [x] login and signup
+- [x] ratings and comments
+- [ ] admin console
+- [ ] user profile page
+- [ ] add all game data
+- [x] add news/articles
+- [ ] add giveaways section
+- [ ] star ratings
+- [ ] search functionality
+- [ ] mark as favourites (saved games will be shown in user profile)
