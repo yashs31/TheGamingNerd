@@ -40,3 +40,5 @@ Backend:
 - [ ] star ratings
 - [ ] search functionality
 - [ ] mark as favourites (saved games will be shown in user profile)
+
+> Website under construction
