@@ -37,6 +37,8 @@ Backend:
 - [ ] add all game data
 - [x] add news/articles
 - [ ] add giveaways section
-- [ ] star ratings
+- [x] star ratings
 - [ ] search functionality
 - [ ] mark as favourites (saved games will be shown in user profile)
+
+> Website under construction
